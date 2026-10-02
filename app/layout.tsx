@@ -7,7 +7,7 @@ const sans = localFont({ src: "../public/fonts/archivo-latin.woff2", variable: "
 const mono = localFont({ src: "../public/fonts/jetbrains-mono-latin.woff2", variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Your Name | Creative Developer",
+  title: "Dante Berishaj | Creative Developer",
   description: "Thoughtful interfaces, expressive motion, and creative development. Explore interactive work built with Next.js, Three.js, and WebGL.",
 };
 export const viewport: Viewport = { themeColor: "#101310" };

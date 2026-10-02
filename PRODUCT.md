@@ -27,20 +27,20 @@ Expressive · considered · curious. Technical discipline and design instinct me
 ## Design Principles
 
 1. **The site is the proof.** Demonstrate motion, 3D, and frontend craft through interactions visitors can use.
-2. **Control makes craft tangible.** Mode choices, material selection, chart exploration, and pace controls produce real changes.
+2. **Control makes craft tangible.** Mode choices and screenshot browsing produce real changes.
 3. **Give the work room.** Expressive scenes alternate with quieter passages so information remains readable.
 4. **Motion respects the visitor.** Maintain keyboard access, a pause affordance for the live field, reduced-motion alternatives, and offscreen suspension.
-5. **Be clear about evidence.** Distinguish live concept demonstrations and illustrative data from production project evidence.
+5. **Be clear about evidence.** Every project shown is real work, presented through production or product screenshots.
 
 ## Content Status
 
-Aurora Commerce, Nebula Dashboard, Pulse Mobile App, and Lumen Studio Site descriptions are inherited supplied content. Current visuals are interactive concepts; production screenshots and live project links have not been supplied. Private-work descriptions, NDA status, roles, results, accessibility/compliance claims, and the 5+ years / 40+ projects / 20+ clients figures are also inherited and unverified. Preserve them as supplied claims, not independently established facts.
+Geo Guesser (https://geo-guesser-rouge.vercel.app/, built with Vue) vocisXultra (https://vocis-xultra.vercel.app/, a Next.js landing page for a choir foundation), and FJALË (https://www.xn--fjal-opa.com/, a vanilla-JavaScript Albanian daily word game) are shipped projects supplied by the owner, with live links and production screenshots captured from the live sites. Geo Guesser World 3D! is the Android edition on Google Play (https://play.google.com/store/apps/details?id=com.snaxxtech.geoguesser), shown through the listing's own screenshots. GoodCannaNow (https://app.goodcannanow.com/goodcannanow/) is a Nuxt patient booking and intake flow on Vianova Connect, shown with the form empty and no patient data. CannaHealRx (https://app.cannahealrx.com/cannahealrx/book/) is a three-step Nuxt booking flow on the same platform, captured with no patient data entered and no payment reached. Incentiv Portal (https://portal.incentiv.io/) is a Next.js Web3 portal shown only through its public sign-in and recovery screens plus the incentiv.io site; nothing behind sign-in was accessed. Offday (a Next.js SaaS for team time off) is in development; it is shown through screenshots of a local build and deliberately has no link. Private-work descriptions, NDA status, roles, results, accessibility/compliance claims, and the 5+ years / 40+ projects / 20+ clients figures are also inherited and unverified. Preserve them as supplied claims, not independently established facts.
 
-Your Name, YN, and hello@example.com are placeholders. The owner must personalize identity/contact information and verify project and metric claims before publication. Availability and personal biography copy also need owner confirmation.
+The owner is Dante Berishaj (brand mark DB). hello@example.com is still a placeholder. The owner must set the contact address and verify metric claims before publication. Availability and personal biography copy also need owner confirmation.
 
 ## Accessibility & Inclusion
 
 - Target WCAG AA contrast: body text at least 4.5:1 and large text at least 3:1 in both themes and each demonstration surface.
-- Respect runtime prefers-reduced-motion changes: static line field and Pulse waveform, no hero parallax, no sticky layering, and demand-rendered product geometry.
+- Respect runtime prefers-reduced-motion changes: static line field, no hero parallax, and no sticky layering.
 - Keep interactive elements keyboard-reachable with visible focus and meaningful labels; use native disclosure and range semantics.
-- Canvas and WebGL visuals are decorative demonstrations. Essential information and controls remain in accessible HTML; product geometry has an SVG fallback.
+- Canvas and WebGL visuals are decorative demonstrations. Essential information and controls remain in accessible HTML.

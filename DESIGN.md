@@ -106,7 +106,7 @@ The user authorized a wholly new direction and delegated its choice. This code-l
 **Key Characteristics:**
 - Ink and celadon with related botanical scene surfaces.
 - Large condensed display type paired with measured sans-serif text.
-- Live demonstrations with direct controls and honest concept labels.
+- Real project screenshots with direct browsing controls.
 - Spacious scenes, restrained borders, and responsive motion fallbacks.
 
 ## Colors
@@ -143,15 +143,14 @@ Depth comes chiefly from tonal surfaces, live geometry, and overlapping sticky s
 
 ## Shapes
 
-Scenes use softly rounded rectangles. Circular icon controls, round material swatches, and pill-shaped mode selectors provide a consistent tactile vocabulary. Single-pixel rules organize content; the line field supplies the expressive organic geometry.
+Scenes use softly rounded rectangles. Circular icon controls and pill-shaped mode selectors provide a consistent tactile vocabulary. Single-pixel rules organize content; the line field supplies the expressive organic geometry.
 
 ## Components
 
 - **Navigation:** brand, role text, anchor links, and circular theme control. Mobile exposes a labelled Menu/Close button and an expanded link row. Theme choice persists locally.
 - **Mode controls:** Flow, Orbit, and Terrain are real pressed-state buttons in a bordered pill. A separate pause control stops the field; reduced motion disables continuous playback.
-- **Project scenes:** description, expandable context, and one interactive demonstration. Aurora changes a native 3D headphone material; Nebula changes illustrative periods and selected bars; Pulse changes a repeated stroke's timing at 70–145 BPM; Lumen shifts alternating text lines.
+- **Project scenes:** description, expandable context, and a screenshot slideshow with previous/next arrows and dot navigation.
 - **Disclosures and tags:** native details/summary rows reveal capabilities and private-work context. Capability tags are compact bordered pills.
-- **Range input:** a labelled native slider with a visible BPM value and a 44px interaction height. Preserve the browser's keyboard behavior.
 - **Contact:** a large celadon invitation, email link, copy button, and live status feedback. There is no separate contact prelude.
 
 **The Motion Contract Rule.** Motion must respond to input, respect live reduced-motion changes, and suspend continuous work when its scene is outside view.
@@ -163,7 +162,6 @@ Button press feedback scales to .97 over 160ms; colors transition over 200ms. Th
 ### Do:
 - Do pair large expressive scenes with concise, legible supporting copy.
 - Do preserve real control behavior, keyboard focus, and reduced-motion states.
-- Do label concept imagery and illustrative data honestly.
 - Do derive future theme styling from the active CSS variables.
 
 ### Don't:

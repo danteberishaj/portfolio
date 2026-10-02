@@ -50,7 +50,7 @@ export default function Experience() {
   return <div className="experience">
     <a href="#work" className="skip-link">Skip to work</a>
     <header className="navigation">
-      <a className="brand" href="#home" aria-label="Your Name, home"><span className="brand-symbol" aria-hidden><i /><i /><i /></span><span>YN<span className="brand-period">.</span></span></a>
+      <a className="brand" href="#home" aria-label="Dante Berishaj, home"><span className="brand-symbol" aria-hidden><i /><i /><i /></span><span>DB<span className="brand-period">.</span></span></a>
       <span className="nav-role">Creative developer<br />Independent & curious</span>
       <nav id="mobile-links" className={menu ? "nav-links open" : "nav-links"} aria-label="Main navigation">
         <a href="#work" onClick={() => setMenu(false)}>Work</a>
@@ -97,7 +97,7 @@ export default function Experience() {
       <section id="contact" className="closing page-width">
         <a className="closing-title" href="mailto:hello@example.com"><h2>Let’s make<br /><span>an impression.</span></h2><span className="closing-arrow"><Icon name="arrow-up-right" /></span></a>
         <div className="contact-row"><p>Available for new collaborations.<br />Thoughtful ideas deserve thoughtful execution.</p><div className="contact-address"><a href="mailto:hello@example.com">hello@example.com</a><button onClick={copyEmail}>{copied ? "Copied" : "Copy email"}</button><span role="status">{copyError ? "Please select the address to copy it." : copied ? "Copied to clipboard." : ""}</span></div></div>
-        <footer><span>© {new Date().getFullYear()} Your Name</span><span>Built with curiosity. Next.js / Three.js / Motion</span><a href="#home">Back to top <Icon name="arrow-up-right" /></a></footer>
+        <footer><span>© {new Date().getFullYear()} Dante Berishaj</span><span>Built with curiosity. Next.js / Three.js / Motion</span><a href="#home">Back to top <Icon name="arrow-up-right" /></a></footer>
       </section>
     </main>
   </div>;
