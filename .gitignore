@@ -25,3 +25,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local design tooling and review captures
+/.claude/
+/.impeccable/live/
+/.impeccable/review/
+/.impeccable/review-v2/*.png
+/.impeccable/review-v2/*.cjs
+__pycache__/
+*.pyc

@@ -1,125 +1,22 @@
 "use client";
-
-import Reveal from "@/components/Reveal";
-import ProjectSlideshow from "@/components/ProjectSlideshow";
-import { motion } from "framer-motion";
-
-type Project = {
-  title: string;
-  description: string;
-  tags: string[];
-  link?: string;
-  // Add screenshot paths here later, e.g. ["/projects/aurora-1.png", ...]
-  images?: string[];
-  placeholderCount?: number;
-};
-
-const projects: Project[] = [
-  {
-    title: "Aurora Commerce",
-    description:
-      "A headless e-commerce storefront with a 3D product viewer and instant search. Built for speed and conversion.",
-    tags: ["Next.js", "Three.js", "Stripe"],
-    link: "#",
-    placeholderCount: 3,
-  },
-  {
-    title: "Nebula Dashboard",
-    description:
-      "Real-time analytics dashboard with animated data visualizations and a fully themeable design system.",
-    tags: ["React", "D3", "WebSocket"],
-    link: "#",
-    placeholderCount: 4,
-  },
-  {
-    title: "Pulse Mobile App",
-    description:
-      "Cross-platform fitness app with gesture-driven UI, offline sync, and a custom motion language.",
-    tags: ["React Native", "GSAP", "Supabase"],
-    link: "#",
-    placeholderCount: 3,
-  },
-  {
-    title: "Lumen Studio Site",
-    description:
-      "Award-style agency website featuring scroll-triggered storytelling and WebGL transitions.",
-    tags: ["Next.js", "WebGL", "Framer Motion"],
-    link: "#",
-    placeholderCount: 3,
-  },
+import { useState } from "react";
+import Reveal from "./Reveal";
+import dynamic from "next/dynamic";
+const ProductObject = dynamic(() => import("./ProductObject"), { ssr: false });
+import { Arrow } from "./Icons";
+const projects = [
+  { title: "Aurora Commerce", type: "Digital commerce", description: "A headless e-commerce storefront with a 3D product viewer and instant search. Built for speed and conversion.", tags: "Next.js / Three.js / Stripe", className: "aurora" },
+  { title: "Nebula Dashboard", type: "Product & data", description: "Real-time analytics dashboard with animated data visualizations and a fully themeable design system.", tags: "React / D3 / WebSocket", className: "nebula" },
+  { title: "Pulse Mobile App", type: "Mobile experience", description: "Cross-platform fitness app with gesture-driven UI, offline sync, and a custom motion language.", tags: "React Native / GSAP / Supabase", className: "pulse" },
+  { title: "Lumen Studio Site", type: "Creative development", description: "Award-style agency website featuring scroll-triggered storytelling and WebGL transitions.", tags: "Next.js / WebGL / Framer Motion", className: "lumen" },
 ];
-
+function Preview({ kind }: { kind: string }) {
+  const [choice, setChoice] = useState(0);
+  if (kind === "aurora") return <div className={`project-art art-aurora color-${choice}`}><div className="art-top"><strong>aurora®</strong><span>Sound, reimagined.</span></div><ProductObject color={["#343637", "#a95135", "#e0dfd8"][choice]} /><div className="product-caption"><span>Less noise.<br /><strong>More everything.</strong></span><div className="swatches" aria-label="Headphone color">{["Graphite", "Clay", "Chalk"].map((color, i) => <button key={color} className={choice === i ? "selected" : ""} style={{ background: ["#343637", "#a95135", "#e0dfd8"][i] }} aria-label={color} aria-pressed={choice === i} onClick={() => setChoice(i)} />)}</div></div></div>;
+  if (kind === "nebula") return <div className="project-art art-nebula"><div className="dashboard-demo"><div className="dashboard-nav"><strong>nebula</strong><span>Overview</span><span>Analytics</span><span>Reports</span></div><div className="dashboard-body"><div className="dashboard-heading"><span>Overview</span><span className="demo-status">Live demo</span></div><p>Total revenue</p><div className="revenue">{choice ? "$38,290" : "$24,680"}<small>Sample data</small></div><div className="chart" aria-label={choice ? "Illustrative yearly revenue chart" : "Illustrative monthly revenue chart"}>{[38, 57, 43, 72, 55, 84, 68, 92, 79, 100, 88, 116].map((height, i) => <div key={i} style={{ transform: `scaleY(${(choice ? height * (0.65 + (i % 3) * 0.15) : height) / 116})` }} />)}</div><div className="chart-footer"><span>Revenue over time</span><div>{["Monthly", "Yearly"].map((label, i) => <button key={label} aria-pressed={choice === i} onClick={() => setChoice(i)}>{label}</button>)}</div></div></div></div></div>;
+  if (kind === "pulse") return <div className="project-art art-pulse"><span className="pulse-word">Keep<br />moving.</span><div className="phone-demo"><div className="phone-island" /><div className="phone-top">pulse<span>Today</span></div><p>Find your rhythm.</p><div className="activity-ring"><span>{choice ? "06:42" : "00:00"}<small>{choice ? "Sample session" : "Ready when you are"}</small></span></div><div className="phone-details"><span>Move<br /><strong>{choice ? "4.2" : "0.0"} km</strong></span><span>Energy<br /><strong>{choice ? "248" : "0"} kcal</strong></span></div><button className="workout-button" onClick={() => setChoice(choice ? 0 : 1)}>{choice ? "Reset preview" : "Preview a session"}<Arrow /></button></div></div>;
+  return <div className={`project-art art-lumen ${choice ? "lumen-alternate" : ""}`}><div className="art-top"><strong>LUMEN</strong><span>Independent design studio</span></div><div className="lumen-type">Ideas<br /><span>in motion.</span></div><button className="lumen-toggle" onClick={() => setChoice(choice ? 0 : 1)} aria-pressed={!!choice}>Change perspective <Arrow diagonal /></button><div className="lumen-orbit" aria-hidden /></div>;
+}
 export default function Projects() {
-  return (
-    <section
-      id="work"
-      className="relative mx-auto max-w-6xl px-6 py-28 md:py-36"
-    >
-      <Reveal>
-        <p className="mb-3 text-sm uppercase tracking-[0.25em] text-accent2">
-          Selected work
-        </p>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-          Projects I&apos;m <span className="text-gradient">proud</span> of.
-        </h2>
-      </Reveal>
-      <Reveal delay={0.1}>
-        <p className="mt-4 max-w-xl text-white/55">
-          Screenshots are placeholders for now — drop your real images into{" "}
-          <code className="rounded bg-white/10 px-1.5 py-0.5 text-xs text-accent2">
-            /public/projects
-          </code>{" "}
-          and list them in each project.
-        </p>
-      </Reveal>
-
-      <div className="mt-16 grid gap-10 md:grid-cols-2 md:gap-x-10 md:gap-y-20">
-        {projects.map((project, i) => (
-          <Reveal key={project.title} delay={(i % 2) * 0.1} y={60}>
-            <motion.article
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="flex flex-col gap-5"
-            >
-              <ProjectSlideshow
-                title={project.title}
-                images={project.images}
-                placeholderCount={project.placeholderCount}
-              />
-              <div>
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-xl font-semibold text-white">
-                    {project.title}
-                  </h3>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      className="text-sm text-accent2 transition-colors hover:text-white"
-                    >
-                      View →
-                    </a>
-                  )}
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {project.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
+  return <section id="work" className="work-section section-shell"><div className="section-heading"><h2>Selected <span>work.</span></h2><p>A few things I’ve put<br />my mind — and heart — into.</p></div><div className="work-grid">{projects.map((project, i) => <Reveal key={project.title} className={`project-item project-${project.className}`} delay={i % 2 * 0.1}><article><Preview kind={project.className} /><div className="project-meta"><span>{project.type}</span><span>Interactive concept preview</span></div><h3>{project.title}</h3><p className="project-description">{project.description}</p><p className="project-tags">{project.tags}</p></article></Reveal>)}</div><div className="work-note"><span>The details make the difference.</span><p>Try the color swatches, switch the data view, or start a sample session.</p></div></section>;
 }

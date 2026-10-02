@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T08:51:57.444Z",
+  "title": "Design System: Live Generative Performance",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Primary",
+        "tonalRamp": [
+          "oklch(15.00% 0.0834 124.16)",
+          "oklch(26.43% 0.0834 124.16)",
+          "oklch(37.86% 0.0834 124.16)",
+          "oklch(49.29% 0.0834 124.16)",
+          "oklch(60.71% 0.0834 124.16)",
+          "oklch(72.14% 0.0834 124.16)",
+          "oklch(83.57% 0.0834 124.16)",
+          "oklch(95.00% 0.0834 124.16)"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0077 145.25)",
+          "oklch(26.43% 0.0077 145.25)",
+          "oklch(37.86% 0.0077 145.25)",
+          "oklch(49.29% 0.0077 145.25)",
+          "oklch(60.71% 0.0077 145.25)",
+          "oklch(72.14% 0.0077 145.25)",
+          "oklch(83.57% 0.0077 145.25)",
+          "oklch(95.00% 0.0077 145.25)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0121 145.17)",
+          "oklch(26.43% 0.0121 145.17)",
+          "oklch(37.86% 0.0121 145.17)",
+          "oklch(49.29% 0.0121 145.17)",
+          "oklch(60.71% 0.0121 145.17)",
+          "oklch(72.14% 0.0121 145.17)",
+          "oklch(83.57% 0.0121 145.17)",
+          "oklch(95.00% 0.0121 145.17)"
+        ]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Surface Raised",
+        "tonalRamp": [
+          "oklch(15.00% 0.0162 145.11)",
+          "oklch(26.43% 0.0162 145.11)",
+          "oklch(37.86% 0.0162 145.11)",
+          "oklch(49.29% 0.0162 145.11)",
+          "oklch(60.71% 0.0162 145.11)",
+          "oklch(72.14% 0.0162 145.11)",
+          "oklch(83.57% 0.0162 145.11)",
+          "oklch(95.00% 0.0162 145.11)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0123 121.70)",
+          "oklch(26.43% 0.0123 121.70)",
+          "oklch(37.86% 0.0123 121.70)",
+          "oklch(49.29% 0.0123 121.70)",
+          "oklch(60.71% 0.0123 121.70)",
+          "oklch(72.14% 0.0123 121.70)",
+          "oklch(83.57% 0.0123 121.70)",
+          "oklch(95.00% 0.0123 121.70)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0221 140.88)",
+          "oklch(26.43% 0.0221 140.88)",
+          "oklch(37.86% 0.0221 140.88)",
+          "oklch(49.29% 0.0221 140.88)",
+          "oklch(60.71% 0.0221 140.88)",
+          "oklch(72.14% 0.0221 140.88)",
+          "oklch(83.57% 0.0221 140.88)",
+          "oklch(95.00% 0.0221 140.88)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "accent-ink": {
+        "role": "neutral",
+        "displayName": "Accent Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0312 135.60)",
+          "oklch(26.43% 0.0312 135.60)",
+          "oklch(37.86% 0.0312 135.60)",
+          "oklch(49.29% 0.0312 135.60)",
+          "oklch(60.71% 0.0312 135.60)",
+          "oklch(72.14% 0.0312 135.60)",
+          "oklch(83.57% 0.0312 135.60)",
+          "oklch(95.00% 0.0312 135.60)"
+        ]
+      },
+      "light-bg": {
+        "role": "neutral",
+        "displayName": "Light Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0123 121.70)",
+          "oklch(26.43% 0.0123 121.70)",
+          "oklch(37.86% 0.0123 121.70)",
+          "oklch(49.29% 0.0123 121.70)",
+          "oklch(60.71% 0.0123 121.70)",
+          "oklch(72.14% 0.0123 121.70)",
+          "oklch(83.57% 0.0123 121.70)",
+          "oklch(95.00% 0.0123 121.70)"
+        ]
+      },
+      "light-surface": {
+        "role": "neutral",
+        "displayName": "Light Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0169 125.30)",
+          "oklch(26.43% 0.0169 125.30)",
+          "oklch(37.86% 0.0169 125.30)",
+          "oklch(49.29% 0.0169 125.30)",
+          "oklch(60.71% 0.0169 125.30)",
+          "oklch(72.14% 0.0169 125.30)",
+          "oklch(83.57% 0.0169 125.30)",
+          "oklch(95.00% 0.0169 125.30)"
+        ]
+      },
+      "light-surface-raised": {
+        "role": "neutral",
+        "displayName": "Light Surface Raised",
+        "tonalRamp": [
+          "oklch(15.00% 0.0220 130.03)",
+          "oklch(26.43% 0.0220 130.03)",
+          "oklch(37.86% 0.0220 130.03)",
+          "oklch(49.29% 0.0220 130.03)",
+          "oklch(60.71% 0.0220 130.03)",
+          "oklch(72.14% 0.0220 130.03)",
+          "oklch(83.57% 0.0220 130.03)",
+          "oklch(95.00% 0.0220 130.03)"
+        ]
+      },
+      "light-ink": {
+        "role": "neutral",
+        "displayName": "Light Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0206 141.96)",
+          "oklch(26.43% 0.0206 141.96)",
+          "oklch(37.86% 0.0206 141.96)",
+          "oklch(49.29% 0.0206 141.96)",
+          "oklch(60.71% 0.0206 141.96)",
+          "oklch(72.14% 0.0206 141.96)",
+          "oklch(83.57% 0.0206 141.96)",
+          "oklch(95.00% 0.0206 141.96)"
+        ]
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Light Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0397 137.21)",
+          "oklch(26.43% 0.0397 137.21)",
+          "oklch(37.86% 0.0397 137.21)",
+          "oklch(49.29% 0.0397 137.21)",
+          "oklch(60.71% 0.0397 137.21)",
+          "oklch(72.14% 0.0397 137.21)",
+          "oklch(83.57% 0.0397 137.21)",
+          "oklch(95.00% 0.0397 137.21)"
+        ]
+      },
+      "light-line": {
+        "role": "neutral",
+        "displayName": "Light Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0206 141.96)",
+          "oklch(26.43% 0.0206 141.96)",
+          "oklch(37.86% 0.0206 141.96)",
+          "oklch(49.29% 0.0206 141.96)",
+          "oklch(60.71% 0.0206 141.96)",
+          "oklch(72.14% 0.0206 141.96)",
+          "oklch(83.57% 0.0206 141.96)",
+          "oklch(95.00% 0.0206 141.96)"
+        ]
+      },
+      "light-primary": {
+        "role": "primary",
+        "displayName": "Light Primary",
+        "tonalRamp": [
+          "oklch(15.00% 0.0937 132.17)",
+          "oklch(26.43% 0.0937 132.17)",
+          "oklch(37.86% 0.0937 132.17)",
+          "oklch(49.29% 0.0937 132.17)",
+          "oklch(60.71% 0.0937 132.17)",
+          "oklch(72.14% 0.0937 132.17)",
+          "oklch(83.57% 0.0937 132.17)",
+          "oklch(95.00% 0.0937 132.17)"
+        ]
+      },
+      "light-accent-ink": {
+        "role": "neutral",
+        "displayName": "Light Accent Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0110 123.46)",
+          "oklch(26.43% 0.0110 123.46)",
+          "oklch(37.86% 0.0110 123.46)",
+          "oklch(49.29% 0.0110 123.46)",
+          "oklch(60.71% 0.0110 123.46)",
+          "oklch(72.14% 0.0110 123.46)",
+          "oklch(83.57% 0.0110 123.46)",
+          "oklch(95.00% 0.0110 123.46)"
+        ]
+      },
+      "commerce": {
+        "role": "secondary",
+        "displayName": "Commerce",
+        "tonalRamp": [
+          "oklch(15.00% 0.0330 124.57)",
+          "oklch(26.43% 0.0330 124.57)",
+          "oklch(37.86% 0.0330 124.57)",
+          "oklch(49.29% 0.0330 124.57)",
+          "oklch(60.71% 0.0330 124.57)",
+          "oklch(72.14% 0.0330 124.57)",
+          "oklch(83.57% 0.0330 124.57)",
+          "oklch(95.00% 0.0330 124.57)"
+        ]
+      },
+      "data": {
+        "role": "secondary",
+        "displayName": "Data",
+        "tonalRamp": [
+          "oklch(15.00% 0.0230 134.96)",
+          "oklch(26.43% 0.0230 134.96)",
+          "oklch(37.86% 0.0230 134.96)",
+          "oklch(49.29% 0.0230 134.96)",
+          "oklch(60.71% 0.0230 134.96)",
+          "oklch(72.14% 0.0230 134.96)",
+          "oklch(83.57% 0.0230 134.96)",
+          "oklch(95.00% 0.0230 134.96)"
+        ]
+      },
+      "pulse": {
+        "role": "secondary",
+        "displayName": "Pulse",
+        "tonalRamp": [
+          "oklch(15.00% 0.0828 119.84)",
+          "oklch(26.43% 0.0828 119.84)",
+          "oklch(37.86% 0.0828 119.84)",
+          "oklch(49.29% 0.0828 119.84)",
+          "oklch(60.71% 0.0828 119.84)",
+          "oklch(72.14% 0.0828 119.84)",
+          "oklch(83.57% 0.0828 119.84)",
+          "oklch(95.00% 0.0828 119.84)"
+        ]
+      },
+      "lumen": {
+        "role": "secondary",
+        "displayName": "Lumen",
+        "tonalRamp": [
+          "oklch(15.00% 0.0410 131.03)",
+          "oklch(26.43% 0.0410 131.03)",
+          "oklch(37.86% 0.0410 131.03)",
+          "oklch(49.29% 0.0410 131.03)",
+          "oklch(60.71% 0.0410 131.03)",
+          "oklch(72.14% 0.0410 131.03)",
+          "oklch(83.57% 0.0410 131.03)",
+          "oklch(95.00% 0.0410 131.03)"
+        ]
+      },
+      "lumen-ink": {
+        "role": "neutral",
+        "displayName": "Lumen Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0159 102.83)",
+          "oklch(26.43% 0.0159 102.83)",
+          "oklch(37.86% 0.0159 102.83)",
+          "oklch(49.29% 0.0159 102.83)",
+          "oklch(60.71% 0.0159 102.83)",
+          "oklch(72.14% 0.0159 102.83)",
+          "oklch(83.57% 0.0159 102.83)",
+          "oklch(95.00% 0.0159 102.83)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Condensed display",
+        "purpose": "Uppercase opening and closing statements."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Archivo section hierarchy."
+      },
+      "title": {
+        "displayName": "Project title",
+        "purpose": "Project scene naming, responsive at 1024px and 767px."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Concise supporting descriptions."
+      },
+      "label": {
+        "displayName": "Control label",
+        "purpose": "Controls and compact supporting metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "scene-layer",
+        "value": "0 -20px 50px -40px #0009",
+        "purpose": "Subtle upper shadow for desktop sticky project scenes; absent on mobile."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23, 1, .32, 1)",
+        "purpose": "Button press, entry, and typography state transitions."
+      },
+      {
+        "name": "press",
+        "value": "160ms",
+        "purpose": "Button scale feedback."
+      },
+      {
+        "name": "color",
+        "value": "200ms",
+        "purpose": "Background and text color response."
+      },
+      {
+        "name": "opening-reveal",
+        "value": "900ms",
+        "purpose": "Display entry; second line delayed by 70ms."
+      },
+      {
+        "name": "typography-shift",
+        "value": "500ms",
+        "purpose": "Lumen text offset."
+      },
+      {
+        "name": "pulse-cycle",
+        "value": "60 / BPM seconds",
+        "purpose": "Repeated visible stroke, 70–145 BPM; static for reduced motion and paused offscreen."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1600px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1024px"
+      },
+      {
+        "name": "mobile",
+        "value": "767px"
+      },
+      {
+        "name": "narrow-mobile",
+        "value": "370px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Mode button",
+      "kind": "button",
+      "refersTo": "button-mode",
+      "description": "An unselected field mode; selection changes the procedural geometry.",
+      "html": "<button class=\"ds-mode\" aria-pressed=\"false\">Orbit</button>",
+      "css": ".ds-mode{font-family:var(--font-sans),Archivo,sans-serif;background:transparent;color:var(--muted,#a4afa2);border:0;border-radius:25px;min-height:40px;padding:0 20px;font-size:12px;cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1),color 200ms}.ds-mode:hover{color:var(--ink,#edf0e7)}.ds-mode:focus-visible{outline:2px solid var(--accent,#d2e8ab);outline-offset:5px;}.ds-mode:active{transform:scale(.97)}"
+    },
+    {
+      "name": "Selected mode",
+      "kind": "button",
+      "refersTo": "button-mode-selected",
+      "description": "Celadon fill communicates the pressed state.",
+      "html": "<button class=\"ds-mode-selected\" aria-pressed=\"true\">Flow</button>",
+      "css": ".ds-mode-selected{font-family:var(--font-sans),Archivo,sans-serif;background:var(--accent,#d2e8ab);color:var(--accent-ink,#172112);border:0;border-radius:25px;min-height:40px;padding:0 20px;font-size:12px;cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1)}.ds-mode-selected:hover{background:var(--accent,#d2e8ab)}.ds-mode-selected:focus-visible{outline:2px solid var(--accent,#d2e8ab);outline-offset:5px;}.ds-mode-selected:active{transform:scale(.97)}"
+    },
+    {
+      "name": "Theme control",
+      "kind": "button",
+      "refersTo": "button-theme",
+      "description": "A circular outlined action, with raised surface on hover.",
+      "html": "<button class=\"ds-theme\" aria-label=\"Switch to light theme\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5\"/></svg></button>",
+      "css": ".ds-theme{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line,#ffffff21);border-radius:50%;background:transparent;color:var(--ink,#edf0e7);cursor:pointer;transition:background-color 200ms,transform 160ms}.ds-theme:hover{background:var(--surface-raised,#222922)}.ds-theme:focus-visible{outline:2px solid var(--accent,#d2e8ab);outline-offset:5px;}.ds-theme:active{transform:scale(.97)}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Quiet anchor links with a celadon contact action.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#work\">Work</a><a href=\"#about\">Approach</a><a href=\"#contact\">Let’s talk</a></nav>",
+      "css": ".ds-nav{font-family:var(--font-sans),Archivo,sans-serif;display:flex;align-items:center;gap:34px;font-size:13px;color:var(--ink,#edf0e7)}.ds-nav a{color:inherit;text-decoration:none;padding:14px 0}.ds-nav a:last-child,.ds-nav a:hover{color:var(--accent,#d2e8ab)}.ds-nav a:focus-visible{outline:2px solid var(--accent,#d2e8ab);outline-offset:5px;}"
+    },
+    {
+      "name": "Capability tag",
+      "kind": "chip",
+      "refersTo": "capability-tag",
+      "description": "Noninteractive technology metadata in a compact outlined pill.",
+      "html": "<span class=\"ds-tag\">Three.js</span>",
+      "css": ".ds-tag{font-family:var(--font-sans),Archivo,sans-serif;display:inline-block;border:1px solid var(--line,#ffffff21);padding:9px 13px;border-radius:24px;font-size:11px;color:var(--ink,#edf0e7)}"
+    },
+    {
+      "name": "Project disclosure",
+      "kind": "custom",
+      "description": "Native disclosure with a visible focus state and rotating plus.",
+      "html": "<details class=\"ds-details\"><summary>Behind the project<svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></summary><p>This interactive study demonstrates part of the interface concept.</p></details>",
+      "css": ".ds-details{font-family:var(--font-sans),Archivo,sans-serif;color:var(--ink,#edf0e7);max-width:280px}.ds-details summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:44px;font-size:12px;border-block:1px solid var(--line,#ffffff21)}.ds-details summary::-webkit-details-marker{display:none}.ds-details summary:hover{color:var(--accent,#d2e8ab)}.ds-details summary:focus-visible{outline:2px solid var(--accent,#d2e8ab);outline-offset:5px;}.ds-details[open] svg{transform:rotate(45deg)}.ds-details p{font-size:12px;line-height:1.6;color:var(--muted,#a4afa2);margin-top:15px}"
+    },
+    {
+      "name": "Pace range",
+      "kind": "input",
+      "description": "Native range input in the Pulse scene; the application links its value to stroke timing.",
+      "html": "<div class=\"ds-pace\"><label for=\"ds-pace-range\">Set the pace <span>105 BPM</span></label><input id=\"ds-pace-range\" type=\"range\" min=\"10\" max=\"85\" value=\"45\"/></div>",
+      "css": ".ds-pace{font-family:var(--font-sans),Archivo,sans-serif;background:#d7e7a9;color:#263a23;padding:25px}.ds-pace label{display:flex;justify-content:space-between;font-size:12px}.ds-pace label span{font-variant-numeric:tabular-nums}.ds-pace input{width:100%;height:44px;accent-color:#34512a;cursor:pointer;background:transparent}.ds-pace input:hover{accent-color:#34512a}.ds-pace input:focus-visible{outline:2px solid #263a23;outline-offset:5px}"
+    },
+    {
+      "name": "Project scene",
+      "kind": "card",
+      "refersTo": "project-scene",
+      "description": "A copy/demo split with soft corners and subtle desktop layering shadow.",
+      "html": "<article class=\"ds-scene\"><div class=\"ds-copy\"><h3>Aurora</h3><p>Commerce, in another dimension.</p></div><div class=\"ds-art\">Interactive concept</div></article>",
+      "css": ".ds-scene{font-family:var(--font-sans),Archivo,sans-serif;display:grid;grid-template-columns:.8fr 1.2fr;background:var(--surface,#191e19);color:var(--ink,#edf0e7);overflow:hidden;border-radius:16px;box-shadow:0 -20px 50px -40px #0009}.ds-copy{padding:47px 40px 36px}.ds-copy h3{font-size:45px;line-height:1;letter-spacing:-.04em;font-weight:500;margin:0}.ds-copy p{font-size:14px;line-height:1.6;color:var(--muted,#a4afa2)}.ds-art{display:grid;place-items:center;background:#bec7b0;color:#273020;padding:25px;font-size:12px}@media(max-width:767px){.ds-scene{grid-template-columns:1fr;border-radius:12px;box-shadow:none}.ds-copy{padding:28px 25px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Live Generative Performance",
+    "overview": "A cinematic digital performance where the interface itself is the portfolio proof. Organic line fields, condensed lettering, and tangible controls make technical ability visible through use. Quiet text passages give the interactive scenes room.\n\nThe user authorized a wholly new direction and delegated its choice. This code-led world replaces the silver/orange sculpture design and the older cyan cockpit identity; no image comp was approved. The default is dark, with a persistent light-theme alternative.",
+    "keyCharacteristics": [
+      "Ink and celadon with related botanical scene surfaces.",
+      "Large condensed display type paired with measured sans-serif text.",
+      "Live demonstrations with direct controls and honest concept labels.",
+      "Spacious scenes, restrained borders, and responsive motion fallbacks."
+    ],
+    "rules": [
+      {
+        "name": "The Theme Pair Rule",
+        "body": "Switch foreground, surface, muted, border, and accent tokens together; preserve each demonstration's local foreground/background pairing.",
+        "section": "colors"
+      },
+      {
+        "name": "The Motion Contract Rule",
+        "body": "Motion must respond to input, respect live reduced-motion changes, and suspend continuous work when its scene is outside view.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do pair large expressive scenes with concise, legible supporting copy.",
+      "Do preserve real control behavior, keyboard focus, and reduced-motion states.",
+      "Do label concept imagery and illustrative data honestly.",
+      "Do derive future theme styling from the active CSS variables."
+    ],
+    "donts": [
+      "Don't restore the rejected silver/orange sculpture or cyan cockpit identity.",
+      "Don't promote legacy Tailwind tokens or unmounted components into this system.",
+      "Don't present supplied metrics or demo interfaces as independently verified production evidence.",
+      "Don't hide essential information exclusively in animated canvas or WebGL output.\r"
+    ]
+  }
+}
