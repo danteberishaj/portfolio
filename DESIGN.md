@@ -155,7 +155,7 @@ Scenes use softly rounded rectangles. Circular icon controls and pill-shaped mod
 
 **The Motion Contract Rule.** Motion must respond to input, respect live reduced-motion changes, and suspend continuous work when its scene is outside view.
 
-Button press feedback scales to .97 over 160ms; colors transition over 200ms. The shared exit ease is cubic-bezier(.23, 1, .32, 1). The opening reveal takes 900ms with a 70ms second-line delay; Lumen shifts over 500ms. Pulse's stroke cycle is 60/BPM seconds and becomes a static path for reduced motion. The procedural field pauses when offscreen or the document is hidden; the product canvas uses demand rendering for reduced motion or offscreen scenes. Focus is a visible 2px outline with 5px offset, using the accent or each demonstration's local dark/cream foreground.
+Button press feedback scales to .97 over 160ms; colors transition over 200ms. The shared exit ease is cubic-bezier(.23, 1, .32, 1). The opening reveal takes 900ms with a 70ms second-line delay; Screenshot slides cross-fade over 350ms and swap instantly under reduced motion. The procedural field pauses when offscreen or the document is hidden. Focus is a visible 2px outline with 5px offset, using the accent or each screenshot stage's local ink color.
 
 ## Do's and Don'ts
 
