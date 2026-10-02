@@ -25,3 +25,5 @@ Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
   1600×1000 with no patient data: step one, state dropdown, date and time picker, patient info, questionnaire, uploads.
 - `incentiv-1.jpg` … `incentiv-8.jpg`: Incentiv Portal (https://portal.incentiv.io/) public screens at 1600×1000:
   sign-in, returning sign-in, wallet recovery, then five sections of the public site incentiv.io. Nothing behind sign-in.
+- `bayyinah-1.jpg` … `bayyinah-6.jpg`: Bayyinah TV marketing site (local Nuxt build at localhost:3000, no public link), captured at
+  1600×1000: hero, courses, why Bayyinah, popular videos, pricing, community.

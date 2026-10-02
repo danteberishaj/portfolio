@@ -11,7 +11,7 @@ type Project = {
   category: string;
   detail: string;
   tags: string[];
-  kind: "geo" | "vocis" | "fjale" | "offday" | "geoapp" | "canna" | "chrx" | "incentiv";
+  kind: "geo" | "vocis" | "fjale" | "offday" | "geoapp" | "canna" | "chrx" | "incentiv" | "bayyinah";
   /** Public URL of the shipped project, when one exists. */
   link?: string;
   /** Label for the live link, e.g. "Play it live" or "Visit the site". */
@@ -30,6 +30,7 @@ const projects: Project[] = [
   { title: "GoodCannaNow", fullName: "GoodCannaNow patient booking", category: "Patient intake, made simple.", detail: "A booking and intake flow for medical cannabis certification in Louisiana, built for GoodCannaNow on the Vianova Connect platform. Patients say whether they are new or renewing, enter identity and address details, upload an ID, complete a medical intake, and give consent, all in one guided form.", tags: ["Nuxt", "Vue", "Healthcare"], kind: "canna", link: "https://app.goodcannanow.com/goodcannanow/", linkLabel: "Open the booking flow", behind: "Built with Nuxt on Vianova Connect. The app ships a strict content security policy and HSTS, allows payment tokenisation only through Stripe and BlueSnap, and submits patient information encrypted in transit. Required fields, matching email and phone confirmation, and a photo ID upload keep certifications from being rejected at the dispensary.", footnote: "Shipped project / Production screenshots" },
   { title: "CannaHealRx", fullName: "CannaHealRx appointment booking", category: "Book an evaluation in minutes.", detail: "Online appointment booking for CannaHealRx, a telehealth clinic for medical cannabis certification in several US states. Patients pick their state, choose a date and time, complete a patient intake with ID upload, and pay, in three guided steps.", tags: ["Nuxt", "Vue", "Telehealth"], kind: "chrx", link: "https://app.cannahealrx.com/cannahealrx/book/", linkLabel: "Open the booking flow", behind: "Built with Nuxt on the same booking platform as GoodCannaNow, with the same content security policy, HSTS, and Stripe and BlueSnap tokenisation. Available dates and times load per state, a chosen slot is held for twenty minutes while the patient completes the intake, and each qualifying condition in the questionnaire carries its ICD-10 code.", footnote: "Shipped project / Production screenshots" },
   { title: "Incentiv Portal", fullName: "Incentiv Portal", category: "Onchain, without the friction.", detail: "The web portal for Incentiv, an EVM Layer 1 built around native account abstraction. Sign in with a passkey, MetaMask, or WalletConnect, reconnect a returning account, or recover a wallet from its recovery phrase, then land on a dashboard with rewards to claim.", tags: ["Next.js", "React", "Web3"], kind: "incentiv", link: "https://portal.incentiv.io/", linkLabel: "Open the portal", behind: "Built with Next.js. Sign-in is wallet based rather than password based: passkeys, MetaMask, or WalletConnect, with a separate quick path for returning accounts and a two-step wallet recovery that warns people never to paste another wallet’s seed phrase. Only the public screens are shown here, since the dashboard sits behind sign-in. The last five slides show incentiv.io, the network’s public site, for context.", footnote: "Shipped project / Public screens" },
+  { title: "Bayyinah TV", fullName: "Bayyinah TV", category: "Quran studies, made simple.", detail: "The marketing site for Bayyinah TV, a subscription platform for studying the Quran and Arabic. One page takes a visitor from the promise and learner testimonials through the course catalogue, the most popular videos, and a monthly or annual plan, to the FAQ and a worldwide community.", tags: ["Nuxt", "Vue", "Education"], kind: "bayyinah", behind: "Built with Nuxt. The page pairs a serif display face with warm, dark surfaces and a restrained red accent, with course cards, a video carousel, a pricing toggle between monthly and annual billing, and accordion FAQs. The screenshots come from a local build of the site, so there is no public link here.", footnote: "Local build / Page screenshots" },
 ];
 
 type Shot = { src: string; alt: string; caption: string };
@@ -41,6 +42,7 @@ const offdayTheme: ShotTheme = { tone: "dark", bg: "#171214", ink: "#f6eef1", mu
 const cannaTheme: ShotTheme = { tone: "light", bg: "#e8efe9", ink: "#15231a", muted: "#5a6b5f", accent: "#2e7d4f", frame: "#ffffff", line: "#15231a18", dot: "#15231a33" };
 const chrxTheme: ShotTheme = { tone: "light", bg: "#e6ebf4", ink: "#121a2e", muted: "#56617a", accent: "#2f7de1", frame: "#ffffff", line: "#121a2e18", dot: "#121a2e33" };
 const incentivTheme: ShotTheme = { tone: "dark", bg: "#161614", ink: "#f3f1ec", muted: "#a39f96", accent: "#f26419", frame: "#0d0d0c", line: "#ffffff14", dot: "#ffffff38" };
+const bayyinahTheme: ShotTheme = { tone: "dark", bg: "#1e171a", ink: "#f6e9e1", muted: "#b0a09a", accent: "#d4472a", frame: "#120d0f", line: "#ffffff14", dot: "#ffffff38" };
 const vocisTheme: ShotTheme = { tone: "light", bg: "#e9eef4", ink: "#141a24", muted: "#5b6675", accent: "#0e5a8a", frame: "#ffffff", line: "#141a2418", dot: "#141a2433" };
 
 const geoShots: Shot[] = [
@@ -117,6 +119,15 @@ const incentivShots: Shot[] = [
   { src: "/projects/incentiv-8.jpg", alt: "The World Grows section, a close-up of the robot’s visor reading Transacting 100 dollars to John.", caption: "The world grows" },
 ];
 
+const bayyinahShots: Shot[] = [
+  { src: "/projects/bayyinah-1.jpg", alt: "Bayyinah TV home page: the headline Quran Studies Made Simple above the app shown on laptop, monitor, tablet, and phone.", caption: "Welcome" },
+  { src: "/projects/bayyinah-2.jpg", alt: "Learner statistics and testimonials, followed by three course cards: Surah-by-Surah, Subject-by-Subject, and Step-by-Step Arabic.", caption: "Courses for every learner" },
+  { src: "/projects/bayyinah-3.jpg", alt: "A Proven Way of Learning section with three cards: a step-by-step path, a video lesson with Watch and Listen, and history and bookmarks.", caption: "A proven way of learning" },
+  { src: "/projects/bayyinah-4.jpg", alt: "Story Nights, History, and Self Development tabs above a row of four popular video cards with lesson counts and durations.", caption: "Most popular videos" },
+  { src: "/projects/bayyinah-5.jpg", alt: "Choose Your Plan section with a monthly and annual toggle and a Premium plan card at eleven dollars a month.", caption: "Plans and pricing" },
+  { src: "/projects/bayyinah-6.jpg", alt: "Join the Global Bayyinah Family section with app store buttons and three video testimonials from learners.", caption: "A global community" },
+];
+
 function ScreenshotStudy({ shots, theme, note }: { shots: Shot[]; theme: ShotTheme; note: string }) {
   const [index, setIndex] = useState(0);
   const reduced = useMotionPreference();
@@ -148,9 +159,10 @@ const GeoAppStudy = () => <ScreenshotStudy shots={geoappShots} theme={geoTheme} 
 const CannaStudy = () => <ScreenshotStudy shots={cannaShots} theme={cannaTheme} note="Production screenshots / Browse the flow" />;
 const ChrxStudy = () => <ScreenshotStudy shots={chrxShots} theme={chrxTheme} note="Production screenshots / Browse the flow" />;
 const IncentivStudy = () => <ScreenshotStudy shots={incentivShots} theme={incentivTheme} note="Public screens / Browse the portal and site" />;
+const BayyinahStudy = () => <ScreenshotStudy shots={bayyinahShots} theme={bayyinahTheme} note="Page screenshots / Browse the site" />;
 const VocisStudy = () => <ScreenshotStudy shots={vocisShots} theme={vocisTheme} note="Production screenshots / Browse the page" />;
 
-const studies = { geo: GeoStudy, vocis: VocisStudy, fjale: FjaleStudy, offday: OffdayStudy, geoapp: GeoAppStudy, canna: CannaStudy, chrx: ChrxStudy, incentiv: IncentivStudy };
+const studies = { geo: GeoStudy, vocis: VocisStudy, fjale: FjaleStudy, offday: OffdayStudy, geoapp: GeoAppStudy, canna: CannaStudy, chrx: ChrxStudy, incentiv: IncentivStudy, bayyinah: BayyinahStudy };
 
 export default function ProjectGallery() {
   return <section id="work" className="work page-width">

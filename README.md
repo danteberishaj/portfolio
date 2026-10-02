@@ -25,7 +25,7 @@ using the page publicly.
 
 - Name and metadata: app/layout.tsx and components/Experience.tsx (already set to Dante Berishaj).
 - Contact address: both the email link and clipboard value in components/Experience.tsx.
-- Public projects: components/ProjectGallery.tsx. Geo Guesser, vocisXultra, FJALË, the Geo Guesser World 3D! Android app, the GoodCannaNow and CannaHealRx booking flows, and the Incentiv Portal are shipped projects
+- Public projects: components/ProjectGallery.tsx. Geo Guesser, vocisXultra, FJALË, the Geo Guesser World 3D! Android app, the GoodCannaNow and CannaHealRx booking flows, the Incentiv Portal, and the Bayyinah TV site (a local build, no public link) are shown
   with live links and production screenshots in public/projects (see the README there). Offday is
   an in-development SaaS product shown through screenshots only, with no link by the owner's request.
 - Experience, capabilities, and private work: components/Experience.tsx.
