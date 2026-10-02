@@ -3,7 +3,6 @@ import useMotionPreference from "./useMotionPreference";
 
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import Icon from "./PortfolioIcon";
 
 type Project = {
@@ -125,12 +124,10 @@ function ScreenshotStudy({ shots, theme, note }: { shots: Shot[]; theme: ShotThe
   const shot = shots[index];
   const vars = { "--shot-bg": theme.bg, "--shot-ink": theme.ink, "--shot-muted": theme.muted, "--shot-accent": theme.accent, "--shot-frame": theme.frame, "--shot-line": theme.line, "--shot-dot": theme.dot } as CSSProperties;
   return <div className="study study-shots" data-tone={theme.tone} style={vars}>
-    <div className="shots-frame">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div key={shot.src} className="shots-image" initial={{ opacity: reduced ? 1 : 0 }} animate={{ opacity: 1 }} exit={{ opacity: reduced ? 1 : 0 }} transition={{ duration: reduced ? 0 : .35 }}>
-          <Image src={shot.src} alt={shot.alt} fill sizes="(max-width: 767px) 100vw, (max-width: 1480px) 55vw, 820px" />
-        </motion.div>
-      </AnimatePresence>
+    <div className="shots-frame" data-reduced={reduced || undefined}>
+      {shots.map((item, i) => <div key={item.src} className="shots-image" data-active={index === i || undefined} aria-hidden={index !== i || undefined}>
+        <Image src={item.src} alt={item.alt} fill sizes="(max-width: 767px) 100vw, (max-width: 1480px) 55vw, 820px" />
+      </div>)}
     </div>
     <div className="shots-controls">
       <span className="shots-caption" aria-live="polite"><b>{String(index + 1).padStart(2, "0")}</b> / {String(count).padStart(2, "0")} <span>{shot.caption}</span></span>
