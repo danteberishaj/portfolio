@@ -117,7 +117,7 @@ Pale celadon carries the dark-theme selected state, headline emphasis, live fiel
 
 ### Secondary
 
-Commerce sage, data mist, pulse lime, and Lumen olive distinguish the four demonstrations within the same green family. Lumen uses cream text and its explanatory note stays fully opaque.
+Each project's screenshot stage carries its own tone (dark or light background, ink, muted, and accent values) drawn from the product itself, so every slideshow reads as that product rather than as the portfolio.
 
 ### Neutral
 
