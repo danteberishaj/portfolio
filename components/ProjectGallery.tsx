@@ -11,7 +11,7 @@ type Project = {
   category: string;
   detail: string;
   tags: string[];
-  kind: "geo" | "vocis" | "fjale" | "offday" | "geoapp" | "canna" | "chrx" | "incentiv" | "bayyinah";
+  kind: "geo" | "vocis" | "fjale" | "offday" | "geoapp" | "canna" | "chrx" | "incentiv" | "bayyinah" | "ds";
   /** Public URL of the shipped project, when one exists. */
   link?: string;
   /** Label for the live link, e.g. "Play it live" or "Visit the site". */
@@ -31,6 +31,7 @@ const projects: Project[] = [
   { title: "CannaHealRx", fullName: "CannaHealRx appointment booking", category: "Book an evaluation in minutes.", detail: "Online appointment booking for CannaHealRx, a telehealth clinic for medical cannabis certification in several US states. Patients pick their state, choose a date and time, complete a patient intake with ID upload, and pay, in three guided steps.", tags: ["Nuxt", "Vue", "Telehealth"], kind: "chrx", link: "https://app.cannahealrx.com/cannahealrx/book/", linkLabel: "Open the booking flow", behind: "Built with Nuxt on the same booking platform as GoodCannaNow, with the same content security policy, HSTS, and Stripe and BlueSnap tokenisation. Available dates and times load per state, a chosen slot is held for twenty minutes while the patient completes the intake, and each qualifying condition in the questionnaire carries its ICD-10 code.", footnote: "Shipped project / Production screenshots" },
   { title: "Incentiv Portal", fullName: "Incentiv Portal", category: "Onchain, without the friction.", detail: "The web portal for Incentiv, an EVM Layer 1 built around native account abstraction. Sign in with a passkey, MetaMask, or WalletConnect, reconnect a returning account, or recover a wallet from its recovery phrase, then land on a dashboard with rewards to claim.", tags: ["Next.js", "React", "Web3"], kind: "incentiv", link: "https://portal.incentiv.io/", linkLabel: "Open the portal", behind: "Built with Next.js. Sign-in is wallet based rather than password based: passkeys, MetaMask, or WalletConnect, with a separate quick path for returning accounts and a two-step wallet recovery that warns people never to paste another wallet’s seed phrase. Only the public screens are shown here, since the dashboard sits behind sign-in. The last five slides show incentiv.io, the network’s public site, for context.", footnote: "Shipped project / Public screens" },
   { title: "Bayyinah TV", fullName: "Bayyinah TV", category: "Quran studies, made simple.", detail: "The marketing site for Bayyinah TV, a subscription platform for studying the Quran and Arabic. One page takes a visitor from the promise and learner testimonials through the course catalogue, the most popular videos, and a monthly or annual plan, to the FAQ and a worldwide community.", tags: ["Nuxt", "Vue", "Education"], kind: "bayyinah", behind: "Built with Nuxt. The page pairs a serif display face with warm, dark surfaces and a restrained red accent, with course cards, a video carousel, a pricing toggle between monthly and annual billing, and accordion FAQs. The screenshots come from a local build of the site, so there is no public link here.", footnote: "Local build / Page screenshots" },
+  { title: "Vianova Design System", fullName: "Vianova Design System v2", category: "Every claim, measured.", detail: "A design system built from scratch for Vianova: 41 React components on one token spine. Three JSON files generate the CSS variables, JavaScript, SCSS, utility classes, and Figma bundle, and a test harness measures contrast in a real browser across 6,120 rendered states.", tags: ["React", "Design tokens", "Accessibility"], kind: "ds", behind: "Tokens are code: the JSON source is the only place a design value lives, and a drift check fails the build when a generated file disagrees. A Playwright harness renders every variant, forces each pseudo-state, and asserts 4.5:1 text and 3:1 boundary contrast on computed styles, alongside 2,591 unit and accessibility tests. Every gate ships with a negative control that must fail, and 44 decision records explain why. The package is private, so there is no link; these boards are rendered from the real components with synthetic data.", footnote: "Private package / Boards rendered from the real components" },
 ];
 
 type Shot = { src: string; alt: string; caption: string };
@@ -43,6 +44,7 @@ const cannaTheme: ShotTheme = { tone: "light", bg: "#e8efe9", ink: "#15231a", mu
 const chrxTheme: ShotTheme = { tone: "light", bg: "#e6ebf4", ink: "#121a2e", muted: "#56617a", accent: "#2f7de1", frame: "#ffffff", line: "#121a2e18", dot: "#121a2e33" };
 const incentivTheme: ShotTheme = { tone: "dark", bg: "#161614", ink: "#f3f1ec", muted: "#a39f96", accent: "#f26419", frame: "#0d0d0c", line: "#ffffff14", dot: "#ffffff38" };
 const bayyinahTheme: ShotTheme = { tone: "dark", bg: "#1e171a", ink: "#f6e9e1", muted: "#b0a09a", accent: "#d4472a", frame: "#120d0f", line: "#ffffff14", dot: "#ffffff38" };
+const dsTheme: ShotTheme = { tone: "dark", bg: "#0a1318", ink: "#eaf4f8", muted: "#93aab5", accent: "#5bbad8", frame: "#060b10", line: "#ffffff14", dot: "#ffffff38" };
 const vocisTheme: ShotTheme = { tone: "light", bg: "#e9eef4", ink: "#141a24", muted: "#5b6675", accent: "#0e5a8a", frame: "#ffffff", line: "#141a2418", dot: "#141a2433" };
 
 const geoShots: Shot[] = [
@@ -128,6 +130,16 @@ const bayyinahShots: Shot[] = [
   { src: "/projects/bayyinah-6.jpg", alt: "Join the Global Bayyinah Family section with app store buttons and three video testimonials from learners.", caption: "A global community" },
 ];
 
+const dsShots: Shot[] = [
+  { src: "/projects/ds-1.jpg", alt: "Cover board: the title Vianova Design System beside a tilted wall of real components, including tabs, buttons, badges, a table, and a progress ring, with the figures 41 components, 868 design tokens, and 6,120 measured states.", caption: "The system" },
+  { src: "/projects/ds-2.jpg", alt: "Token board: an eleven-step brand colour ramp, seven accent families, and specimens for type, radius, elevation, and motion, beside a count of 868 tokens across core, semantic, and component tiers.", caption: "Tokens are code" },
+  { src: "/projects/ds-3.jpg", alt: "Contrast board: a grid of buttons in seven tones and four variants, each with its measured label contrast above the 4.5 to 1 floor, and one button shown at rest, hover, focus, disabled, and loading.", caption: "Measured contrast" },
+  { src: "/projects/ds-4.jpg", alt: "A product screen composed from the system: a sidebar, search field, tabs, and a people table with status badges, progress bars, and an open row menu.", caption: "Whole screens" },
+  { src: "/projects/ds-5.jpg", alt: "Form board: an appointment form with a phone number field, a clinic picker, and an email error, beside a date picker with time slots, a six-digit code input, a switch, and a file dropzone.", caption: "Forms and pickers" },
+  { src: "/projects/ds-6.jpg", alt: "Exploded view of five stacked layers: the page at 0, a menu at 80, a modal and its scrim at 200, a menu opened inside the modal at 320, and toasts at 400.", caption: "Overlay layers" },
+  { src: "/projects/ds-7.jpg", alt: "Pipeline board with five stages, Tokens, Generate, Build, Prove, and Ship, where Prove lists eight passing gates such as token drift, contrast matrix, and visual baseline.", caption: "How a change ships" },
+];
+
 function ScreenshotStudy({ shots, theme, note }: { shots: Shot[]; theme: ShotTheme; note: string }) {
   const [index, setIndex] = useState(0);
   const reduced = useMotionPreference();
@@ -160,9 +172,10 @@ const CannaStudy = () => <ScreenshotStudy shots={cannaShots} theme={cannaTheme} 
 const ChrxStudy = () => <ScreenshotStudy shots={chrxShots} theme={chrxTheme} note="Production screenshots / Browse the flow" />;
 const IncentivStudy = () => <ScreenshotStudy shots={incentivShots} theme={incentivTheme} note="Public screens / Browse the portal and site" />;
 const BayyinahStudy = () => <ScreenshotStudy shots={bayyinahShots} theme={bayyinahTheme} note="Page screenshots / Browse the site" />;
+const DsStudy = () => <ScreenshotStudy shots={dsShots} theme={dsTheme} note="Rendered from the real components / Browse the system" />;
 const VocisStudy = () => <ScreenshotStudy shots={vocisShots} theme={vocisTheme} note="Production screenshots / Browse the page" />;
 
-const studies = { geo: GeoStudy, vocis: VocisStudy, fjale: FjaleStudy, offday: OffdayStudy, geoapp: GeoAppStudy, canna: CannaStudy, chrx: ChrxStudy, incentiv: IncentivStudy, bayyinah: BayyinahStudy };
+const studies = { geo: GeoStudy, vocis: VocisStudy, fjale: FjaleStudy, offday: OffdayStudy, geoapp: GeoAppStudy, canna: CannaStudy, chrx: ChrxStudy, incentiv: IncentivStudy, bayyinah: BayyinahStudy, ds: DsStudy };
 
 export default function ProjectGallery() {
   return <section id="work" className="work page-width">

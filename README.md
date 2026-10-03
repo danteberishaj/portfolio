@@ -28,6 +28,8 @@ using the page publicly.
 - Public projects: components/ProjectGallery.tsx. Geo Guesser, vocisXultra, FJALË, the Geo Guesser World 3D! Android app, the GoodCannaNow and CannaHealRx booking flows, the Incentiv Portal, and the Bayyinah TV site (a local build, no public link) are shown
   with live links and production screenshots in public/projects (see the README there). Offday is
   an in-development SaaS product shown through screenshots only, with no link by the owner's request.
+  The Vianova Design System is a private package, shown through seven boards rendered from its real
+  components, also with no link by the owner's request.
 - Experience, capabilities, and private work: components/Experience.tsx.
 - Colors, layouts, and responsive behavior: app/globals.css.
 - Visual system and motion conventions: DESIGN.md.

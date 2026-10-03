@@ -27,3 +27,13 @@ Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
   sign-in, returning sign-in, wallet recovery, then five sections of the public site incentiv.io. Nothing behind sign-in.
 - `bayyinah-1.jpg` … `bayyinah-6.jpg`: Bayyinah TV marketing site (local Nuxt build at localhost:3000, no public link), captured at
   1600×1000: hero, courses, why Bayyinah, popular videos, pricing, community.
+- `ds-1.jpg` … `ds-7.jpg`: Vianova Design System (private package `@vianovaai/design-system`, v1.1.6, no link by the
+  owner's request). These are not screenshots of a site: they are 1600×1000 boards composed for this page and rendered
+  in headless Chromium from the package's real components on its `main` branch, with synthetic data: cover, tokens,
+  measured contrast, a product screen, forms and pickers, overlay layers, and the release pipeline. Every figure on them
+  was read from the repository on 2026-10-03 (41 components, 868 tokens, 1,530 contrast probes in 6,120 state series,
+  2,591 unit and accessibility tests, 44 decision records, 506 commits), and the contrast ratios on the third board
+  are computed in the render itself. Key content sits in the middle 64% of each board and above the bottom 7%, so the
+  gallery's cover crop keeps it on phones and wide screens. Where the frame is narrower than that (tablet portrait and
+  some small laptop widths), `.case-ds` in `app/globals.css` shows the whole board with `object-fit: contain` instead;
+  the boards fade to the frame colour at the top and bottom so the letterboxing has no seam.
