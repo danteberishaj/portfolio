@@ -44,3 +44,7 @@ Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
   the real screens at full size; the others are zoomed crops of the overview on a stage. All figures are test data,
   the patient is a test patient, and every person's name was replaced with a made-up one before the capture left the
   page. `.case-connect` shares the narrow-frame rule described above.
+- `connect-7.jpg`: Vianova Connect's appointments calendar with the Add Event panel, composed at 1600×1000 from two
+  screenshots the owner took of the same development environment. It sits between the patient chart and the phone
+  layout in the slideshow. The attendee's name and the truncated patient name in the calendar events were redrawn
+  with the same made-up names as the other slides.
