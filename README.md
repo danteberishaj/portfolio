@@ -29,7 +29,8 @@ using the page publicly.
   with live links and production screenshots in public/projects (see the README there). Offday is
   an in-development SaaS product shown through screenshots only, with no link by the owner's request.
   The Vianova Design System is a private package, shown through seven boards rendered from its real
-  components, also with no link by the owner's request.
+  components, also with no link by the owner's request. Vianova Connect is a dashboard behind sign-in,
+  shown through six boards made from its development environment (test data, names replaced), with no link.
 - Experience, capabilities, and private work: components/Experience.tsx.
 - Colors, layouts, and responsive behavior: app/globals.css.
 - Visual system and motion conventions: DESIGN.md.

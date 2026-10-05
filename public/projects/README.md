@@ -37,3 +37,10 @@ Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
   gallery's cover crop keeps it on phones and wide screens. Where the frame is narrower than that (tablet portrait and
   some small laptop widths), `.case-ds` in `app/globals.css` shows the whole board with `object-fit: contain` instead;
   the boards fade to the frame colour at the top and bottom so the letterboxing has no seam.
+- `connect-1.jpg` … `connect-6.jpg`: Vianova Connect, the clinician dashboard of Vianova's remote care platform (a
+  Nuxt 2 application, v3.5.10, behind sign-in, no link by the owner's request). Captured on 2026-10-05 from its
+  development environment with the owner signed in, re-rendered at 1600×1000, and composed for this page: cover,
+  the overview screen, billing thresholds, alerts, a test patient's chart, and the phone layout. Slides 2 and 5 are
+  the real screens at full size; the others are zoomed crops of the overview on a stage. All figures are test data,
+  the patient is a test patient, and every person's name was replaced with a made-up one before the capture left the
+  page. `.case-connect` shares the narrow-frame rule described above.

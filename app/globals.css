@@ -143,9 +143,9 @@ summary::-webkit-details-marker { display: none; }
 .study-shots[data-tone=light] .icon { filter: none; }
 .study-shots .study-note { color: var(--shot-muted); opacity: 1; }
 .study-shots :focus-visible { outline-color: var(--shot-accent); }
-/* The design system's slides are composed boards with text, not screenshots. When the frame is too narrow to keep that text, show the whole board rather than a cropped one. */
-.case-ds .shots-frame { container-type: size; }
-@container (max-aspect-ratio: 26/25) { .case-ds .shots-image img { object-fit: contain; object-position: center; } }
+/* The design system's and Vianova Connect's slides are composed boards with text, not plain screenshots. When the frame is too narrow to keep that text, show the whole board rather than a cropped one. */
+.case-ds .shots-frame, .case-connect .shots-frame { container-type: size; }
+@container (max-aspect-ratio: 26/25) { .case-ds .shots-image img, .case-connect .shots-image img { object-fit: contain; object-position: center; } }
 
 /* Quiet passages give the more expressive scenes room. */
 .approach { padding-top: 85px; padding-bottom: 130px; }
