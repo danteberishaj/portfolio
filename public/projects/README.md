@@ -48,3 +48,8 @@ Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
   screenshots the owner took of the same development environment. It sits between the patient chart and the phone
   layout in the slideshow. The attendee's name and the truncated patient name in the calendar events were redrawn
   with the same made-up names as the other slides.
+- `connect-8.jpg`, `connect-9.jpg`: Vianova Connect's chat, composed at 1600×1000 from four more of the owner's
+  screenshots: the Chats page with the members dialog, then the docked inbox and chat windows over the overview with
+  the minimised chat bubbles. They follow the appointments slide. Every colleague's name in the thread list, the
+  members list and the "joined the group" notices was redrawn with a made-up name, or dropped where the account
+  name carried a role after it; obvious test labels such as "QA RTM Test" were left as they are.
