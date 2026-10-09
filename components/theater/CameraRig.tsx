@@ -2,7 +2,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef, type MutableRefObject } from "react";
 import * as THREE from "three";
-import { blendSlots, EYE, solveCamera, type Target } from "./camera";
+import { blendSlots, EYE, roomLayout, solveCamera, type Target } from "./camera";
 import { theater, type SceneId } from "./store";
 import useSlots from "./useSlots";
 
@@ -45,7 +45,9 @@ export default function CameraRig({ room }: { room: MutableRefObject<RoomState> 
     if (target.active && target.active !== theater.get().active) theater.setActive(target.active as SceneId);
     room.current.house = target.house;
 
-    const pose = solveCamera(target.rect, size, target.eye);
+    const layout = roomLayout(size.width < size.height);
+    camera.fov = layout.fov;
+    const pose = solveCamera(target.rect, size, target.eye, layout.fov);
     const p = pointer.current;
     p.x = THREE.MathUtils.damp(p.x, p.tx, 4, dt);
     p.y = THREE.MathUtils.damp(p.y, p.ty, 4, dt);

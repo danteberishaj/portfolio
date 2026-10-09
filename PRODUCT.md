@@ -16,7 +16,7 @@ A personal portfolio for a creative developer specializing in interactive, 3D-he
 
 ## Brand Personality
 
-Expressive · considered · curious. Technical discipline and design instinct meet in an experience visitors can shape. The voice is direct and human. A live generative performance, ink and celadon, condensed display lettering, and tactile demonstrations express the user-authorized new direction. A light-theme alternative supports the same identity.
+Expressive · considered · curious. Technical discipline and design instinct meet in an experience visitors can move through. The voice is direct and human. The page is a cinema at night: one WebGL auditorium, a projector beam, and a screen the work plays on, in ink and celadon with condensed display lettering. Dark only, by the owner's choice on 2026-10-09; a still version carries the same content without WebGL.
 
 ## Anti-references
 
@@ -27,9 +27,9 @@ Expressive · considered · curious. Technical discipline and design instinct me
 ## Design Principles
 
 1. **The site is the proof.** Demonstrate motion, 3D, and frontend craft through interactions visitors can use.
-2. **Control makes craft tangible.** Mode choices and screenshot browsing produce real changes.
+2. **Control makes craft tangible.** Screenshot browsing changes what plays on the screen and how the room is lit.
 3. **Give the work room.** Expressive scenes alternate with quieter passages so information remains readable.
-4. **Motion respects the visitor.** Maintain keyboard access, a pause affordance for the live field, reduced-motion alternatives, and offscreen suspension.
+4. **Motion respects the visitor.** Maintain keyboard access, a pause control for the room's ambient motion, the still version for reduced motion or missing WebGL, and rendering that stops while the tab is hidden. Scroll is never hijacked.
 5. **Be clear about evidence.** Every project shown is real work, presented through production or product screenshots, or through boards rendered from the real product and labelled as such.
 
 ## Content Status
@@ -41,6 +41,6 @@ The owner is Dante Berishaj (brand mark DB). hello@example.com is still a placeh
 ## Accessibility & Inclusion
 
 - Target WCAG AA contrast: body text at least 4.5:1 and large text at least 3:1 in both themes and each demonstration surface.
-- Respect runtime prefers-reduced-motion changes: static line field, no hero parallax, and no sticky layering.
+- Respect runtime prefers-reduced-motion changes: the still version replaces the WebGL theater, with no camera motion, no parallax and no sticky layering.
 - Keep interactive elements keyboard-reachable with visible focus and meaningful labels; use native disclosure and range semantics.
 - Canvas and WebGL visuals are decorative demonstrations. Essential information and controls remain in accessible HTML.

@@ -20,13 +20,14 @@ uniform float uFlicker;
 uniform vec3 uLamp;
 varying vec2 vUv;
 float hash(float n) { return fract(sin(n * 127.1) * 43758.5453); }
+vec3 toLinear(vec3 c) { return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(0.04045, c)); }
 void main() {
-  vec3 a = texture2D(uA, vUv).rgb * uHasA;
-  vec3 b = texture2D(uB, vUv).rgb * uHasB;
+  vec3 a = toLinear(texture2D(uA, vUv).rgb) * uHasA;
+  vec3 b = toLinear(texture2D(uB, vUv).rgb) * uHasB;
   vec3 image = mix(a, b, uMix);
   float hasImage = mix(uHasA, uHasB, uMix);
   float d = distance(vUv, vec2(0.5, 0.52));
-  vec3 lamp = uLamp * (0.22 - 0.14 * smoothstep(0.15, 0.75, d));
+  vec3 lamp = uLamp * (0.13 - 0.09 * smoothstep(0.12, 0.75, d));
   vec3 colour = mix(lamp, image, hasImage);
   colour *= 1.0 - 0.18 * smoothstep(0.45, 0.85, d) * hasImage;
   colour *= 1.0 + uFlicker * (hash(floor(uTime * 24.0)) - 0.5) * 0.06;
@@ -77,10 +78,10 @@ void main() {
   vec3 view = toCamera / max(dist, 0.001);
   float edge = pow(1.0 - abs(dot(normalize(vNormal), view)), 2.0);
   float haze = 0.45 + 0.55 * noise(vWorld.xz * 0.3 + vec2(uTime * 0.05, uTime * 0.03));
-  float along = pow(1.0 - vAlong, 2.2) * 0.9 + 0.04;
-  float near = smoothstep(1.5, 9.0, dist);
+  float along = pow(1.0 - vAlong, 2.8) * 0.95 + 0.02;
+  float near = smoothstep(3.0, 16.0, dist);
   float flicker = 1.0 + uFlicker * (hash(floor(uTime * 24.0)) - 0.5) * 0.08;
-  float intensity = edge * haze * along * near * flicker * 0.16 * (1.0 - uHouse * 0.85);
+  float intensity = edge * haze * along * near * flicker * 0.12 * (1.0 - uHouse * 0.85);
   gl_FragColor = vec4(uLamp * intensity, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>
@@ -114,7 +115,7 @@ varying float vNear;
 void main() {
   vec2 c = gl_PointCoord - 0.5;
   float disc = smoothstep(0.5, 0.15, length(c));
-  float brightness = pow(1.0 - vAlong, 1.4) * (0.2 + 0.8 * vSeed) * vNear * 0.35 * (1.0 - uHouse * 0.8);
+  float brightness = pow(1.0 - vAlong, 2.4) * (0.2 + 0.8 * vSeed) * vNear * 0.4 * (1.0 - uHouse * 0.8);
   gl_FragColor = vec4(uLamp * disc * brightness, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>

@@ -1,47 +1,58 @@
 # Portfolio
 
-A kinetic creative-developer portfolio built with Next.js 14, React Three Fiber,
-Three.js, and Framer Motion. Ink-black and celadon surfaces, oversized condensed
-typography, a live procedural line field, and interactive project scenes.
+A creative-developer portfolio built with Next.js 14, React Three Fiber, Three.js
+and custom GLSL. The page is a cinema at night: one WebGL auditorium sits behind
+the document, the projector beam cuts through haze and dust to a 16:10 screen,
+and each project plays on that screen as a reel change. Scrolling is the only
+camera move.
 
 ## Getting started
 
 Run `npm install` and `npm run dev`, then open http://localhost:3000.
 Run `npm run build` followed by `npm start` for a production preview.
+`npm test` runs the unit tests for the camera solver, texture cache and store.
 
-## Experiences
+## How it works
 
-- Pointer-responsive line field with Flow, Orbit, Terrain, and pause controls.
-- Screenshot slideshows for every project, with keyboard-reachable controls.
-- Sticky project scenes, capability disclosures, mobile navigation, and a light theme.
-- Reduced-motion support, keyboard focus, skip navigation, and offscreen canvas suspension.
-- Locally hosted open-source fonts; license files live in public/fonts.
+- The DOM is the script. Every scene renders a 16:10 slot (`[data-slot]`);
+  every frame the camera rig reads the slot rectangles, blends them by how
+  close they sit to the viewport's focus, and solves a straight-ahead camera
+  (distance, lateral dolly, vertical lens shift) that lands the 3D screen
+  exactly on the blended slot. Sticky slots park the camera; native scroll
+  drives every move. There is no scroll-jacking.
+- Project chapters show the real screenshots as textures on the screen; the
+  room's light takes each slide's average colour. Previous/next and dots are
+  real buttons. A project change is a reel change (fade, light sweep, fade
+  in); a slide change is a short cut.
+- A still version carries the same content without WebGL: it is used for
+  `prefers-reduced-motion`, missing WebGL, a lost context, or `/?still`, and
+  is linked from the footer.
+- The Pause button in the navigation stops the room's ambient motion (dust,
+  flicker, sway); the camera still follows scroll.
 
 ## Personalize before publishing
 
 The site belongs to Dante Berishaj. The email, experience counts, and NDA
-claims are retained as supplied. Replace or verify these before
-using the page publicly.
+claims are retained as supplied. Replace or verify these before using the
+page publicly.
 
-- Name and metadata: app/layout.tsx and components/Experience.tsx (already set to Dante Berishaj).
-- Contact address: both the email link and clipboard value in components/Experience.tsx.
-- Public projects: components/ProjectGallery.tsx. Geo Guesser, vocisXultra, FJALË, the Geo Guesser World 3D! Android app, the GoodCannaNow and CannaHealRx booking flows, the Incentiv Portal, and the Bayyinah TV site (a local build, no public link) are shown
-  with live links and production screenshots in public/projects (see the README there). Offday is
-  an in-development SaaS product shown through screenshots only, with no link by the owner's request.
-  The Vianova Design System is a private package, shown through seven boards rendered from its real
-  components, also with no link by the owner's request. Vianova Connect is a dashboard behind sign-in,
-  shown through nine boards made from its development environment (test data, names replaced), with no link.
-- Experience, capabilities, and private work: components/Experience.tsx.
-- Colors, layouts, and responsive behavior: app/globals.css.
-- Visual system and motion conventions: DESIGN.md.
+- Name and metadata: `app/layout.tsx`.
+- Contact address: `components/Sections.tsx` (`EMAIL`).
+- Projects and slides: `components/projects.ts`; images in `public/projects`
+  (see the README there).
+- Capabilities and private work: `components/Sections.tsx`.
+- Layout, type and colour: `app/globals.css`. The scene: `components/theater`.
+- Visual system and motion conventions: `DESIGN.md`.
 
 Geo Guesser links to https://geo-guesser-rouge.vercel.app/, vocisXultra to
-https://vocis-xultra.vercel.app/, and FJALË to https://www.xn--fjal-opa.com/ (fjalë.com).
-No other live project or social URLs were supplied.
+https://vocis-xultra.vercel.app/, and FJALË to https://www.xn--fjal-opa.com/
+(fjalë.com). Offday, Bayyinah TV, the Vianova Design System and Vianova
+Connect are shown without links by the owner's request.
 
 ## Validation
 
-Production build and TypeScript checks pass. Browser checks cover 1440px desktop,
-768px tablet, and 390px mobile layouts, overflow, interactive previews, the mobile
-menu, light theme, and reduced-motion behavior. Review captures are in
-.impeccable/review-v2. Research and installed skill sources are in DESIGN-RESEARCH.md.
+Production build, TypeScript and unit tests pass. Browser checks cover 1440px
+desktop, 768px tablet and 390px mobile layouts, the still version, the pause
+control, context loss, and reduced motion. Research and installed skill
+sources are in `DESIGN-RESEARCH.md`; the design spec and plan are under
+`docs/superpowers`.

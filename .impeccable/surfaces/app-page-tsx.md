@@ -2,32 +2,23 @@
 version: 1
 slug: "app-page-tsx"
 primary_target: "app/page.tsx"
-related_targets: ["components/Experience.tsx", "components/ProjectGallery.tsx", "components/ParticleField.tsx", "components/ProductObject.tsx", "components/useMotionPreference.ts", "components/PortfolioIcon.tsx", "app/globals.css", "app/layout.tsx"]
+related_targets: ["components/Experience.tsx","components/theater/Theater.tsx","components/Chapters.tsx","app/globals.css","app/layout.tsx"]
 ---
 
 # Portfolio home
 
 Mode: Experience.
-Audience: hiring managers, founders, and agency leads evaluating frontend craft.
-Success: shape the live field, explore interactive work, understand the developer, and reach contact.
+Audience: hiring managers, founders and agency leads evaluating a creative developer's craft.
+Success: watch the work play, understand the developer, write to Dante.
 
-The user rejected the previous silver/orange world, requested a wholly new direction, and explicitly delegated the choice. Code-led candidate 6, seed 7e1533bb: live generative performance canvas. No image comp was approved.
+Dante asked on 2026-10-09 for a cinematic, deliberately over-the-top 3D redesign of the whole page using the installed design skills. The identity (ink, celadon, Barlow Condensed, Archivo) and all content are kept; the structure is replaced. Surface roll 1e805dc4 dealt the Projector Room as lead; Dante chose it and locked dark only. Spec: docs/superpowers/specs/2026-10-09-projector-room-redesign-design.md.
 
 ## Direction contract
 
-- **THESIS:** A cinematic digital performance. The interface itself is the portfolio proof.
-- **OWN-WORLD:** Ink black, pale celadon, condensed Barlow lettering and Archivo text; no chrome sculpture or orange fields. Dark initial theme with a persistent light alternative.
-- **STORY:** Shape a flowing field, explore large interactive project scenes, understand the developer, start a conversation.
-- **FIRST VIEWPORT:** Full-bleed procedural line field, oversized condensed typography anchored left, small description, controls along the bottom.
-- **FORM:** Live generative performance canvas, candidate 6, seed 7e1533bb. User delegated a wholly new direction.
-- **MOTION:** Pointer-reactive canvas, three simulation modes, CSS sticky project layering, interruptible state feedback. Reduced-motion and offscreen suspension.
-
-## Current expression
-
-Flow, Orbit, and Terrain reshape the live line field; a pause control and theme switch are available. Selected work uses large copy/demo scenes: Aurora's native headphone material selector, Nebula's illustrative chart controls, Pulse's BPM-controlled temporal stroke, and Lumen's shifting typography. Desktop scenes layer with sticky positioning; mobile and reduced-motion layouts stack normally. Capabilities and private work use native disclosures. Contact ends directly on a celadon invitation, email, and copy action; the extra prelude is removed.
-
-## Constraints and evidence
-
-Active CSS and mounted components are authoritative; old Tailwind tokens and unmounted components are legacy. Lumen's olive surface is #505d45 with its note at full opacity. Pulse repeats at 60/BPM seconds, pauses outside view, and displays a static waveform for reduced motion. Preserve supplied project descriptions and claims as unverified; label demonstration imagery and sample data honestly. Identity/email placeholders and inherited metrics need personalization or verification before publication.
-
-The parent reports production build, TypeScript, and browser checks at 1440/768/390 passing. The final reviewer reports ship for the four scoped fixes: Pulse temporal rhythm, Lumen contrast (6.12:1), removal of the contact eyebrow, and Aurora wordmark tracking (-.04em). These are scoped findings, not a claim that inherited content has been verified.
+- **THESIS:** The portfolio is a cinema at 2 a.m. and the visitor is the only one in the room; scroll is the only camera move. It refuses the category default of a hero object over a card grid, and it refuses scroll-jacking.
+- **OWN-WORLD:** Green-black auditorium, one projector beam through haze and dust, one 16:10 screen, seat backs lit by whatever plays, celadon house lights; Barlow Condensed title cards, Archivo captions and controls. Dark only.
+- **STORY:** Arrive at the back of the room, walk the aisle while eleven reels play (a reel change per project, button-driven slides), read the intertitles about approach and private work, then the house lights come up and the closing card invites a message.
+- **FIRST VIEWPORT:** Fixed 72px nav. The 3D screen spans 58% of the width, centred, in the top two thirds of the viewport; "NOT JUST SEEN. / FELT." projected on it; the beam and dust above, seat backs below; one line of description and the "See the work" action bottom-left.
+- **FORM:** Projector Room, candidate 5 of the ranked structural list, dealt lead of seed 1e805dc4; code-led. The DOM lays out a 16:10 slot per scene and the camera is solved each frame to land the 3D screen on the blended active slot, so sticky slots park the camera and native scroll drives every move.
+- **MOTION:** Exact slot tracking, pointer parallax, handheld sway, gate flicker; reel change 180/300/400ms, slide cut 250ms; pause control; still version for reduced motion, no WebGL or `/?still`.
+- **FINISH:** unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.

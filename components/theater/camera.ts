@@ -3,6 +3,11 @@ export const SCREEN = { width: 16, height: 10, bottom: 1 } as const;
 export const FOV = 42;
 export const EYE = 1.6;
 
+/** Portrait viewports need a wider lens and a deeper room, or the camera ends up behind the projector. */
+export function roomLayout(portrait: boolean) {
+  return portrait ? { fov: 62, lensZ: 44, backZ: 52, rows: 18 } : { fov: FOV, lensZ: 27.4, backZ: 32, rows: 12 };
+}
+
 export type Rect = { left: number; top: number; width: number; height: number };
 export type Slot = { id: string; rect: Rect; eye: number; house: number };
 export type Target = { rect: Rect; eye: number; house: number; active: string | null; presence: number };

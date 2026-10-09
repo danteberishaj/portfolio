@@ -30,7 +30,7 @@ export function textureSrc(src: string, narrow: boolean): string {
 const loader = new THREE.TextureLoader();
 export async function loadImageTexture(src: string): Promise<Loaded> {
   const texture = await loader.loadAsync(src);
-  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.colorSpace = THREE.NoColorSpace; // raw bytes; the screen shader decodes sRGB itself
   texture.anisotropy = 4;
   texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.generateMipmaps = true;

@@ -19,21 +19,26 @@ Installed from the official repositories into `.agents/skills/`:
 
 ## Implemented direction
 
-Code-led generative performance: ink black, pale celadon, Barlow Condensed display
-type, and Archivo body text. A procedural line field provides the opening
-interaction, with three forms and a pause control. Large project scenes let
-visitors change a real 3D material, explore sample chart data, adjust a motion
-pace, and shift typography. The examples are labeled as concepts or illustrative
-data. Existing project claims and identity placeholders remain supplied content.
+Projector Room (2026-10-09). Dante asked for a cinematic, over-the-top 3D
+redesign of the whole page using the installed skills. The brainstorm kept the
+ink, celadon and Barlow Condensed identity and all content; Impeccable's
+surface roll (seed 1e805dc4) dealt three structures and Dante chose the cinema
+and locked dark only. Spec: `docs/superpowers/specs/2026-10-09-projector-room-redesign-design.md`;
+plan: `docs/superpowers/plans/2026-10-09-projector-room-redesign.md`.
 
-Canvas work pauses offscreen and responds to reduced-motion preferences. The
-page keeps native links, buttons, disclosures, range input, keyboard focus,
-mobile navigation, and light/dark themes. Existing Next.js, React Three Fiber,
-and Framer Motion dependencies are reused.
+One fixed WebGL auditorium sits behind native scroll. Each scene lays out a
+16:10 slot and the camera is solved every frame to land the 3D screen on the
+blended slot (`components/theater/camera.ts`), so sticky slots park the camera
+and no scroll is hijacked. Projects play as reel changes with their real
+screenshots as textures; the room's light takes each slide's colour. The beam,
+dust and screen are custom GLSL; bloom runs on the desktop tier only. A still
+version carries the same content for reduced motion, missing WebGL, a lost
+context or `/?still`.
 
 ## Evidence
 
-Production build and TypeScript validation pass. Browser checks cover desktop
-(1440px), tablet (768px), mobile (390px), all project controls, theme switching,
-mobile navigation, overflow, and reduced motion. Captures and verification
-scripts are under `.impeccable/review-v2/`.
+Production build, TypeScript and vitest pass. Playwright captures (software
+WebGL) at 1440, 768 and 390 and in-app browser checks cover the hero, project
+chapters, intertitles, the contact crane, the pause control, context loss and
+the still version. The Impeccable detector reports no non-advisory findings on
+the changed files.

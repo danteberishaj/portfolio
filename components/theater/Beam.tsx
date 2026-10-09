@@ -7,6 +7,7 @@ import { beamFragment, beamVertex, dustFragment, dustVertex } from "./shaders";
 
 const LAMP = new THREE.Color("#e9f3d6");
 const LENS = new THREE.Vector3(0, 5.2, 27.4);
+const lensAt = (z: number) => new THREE.Vector3(LENS.x, LENS.y, z);
 const LENS_HALF = { x: 0.16, y: 0.1 };
 const SCREEN_HALF = { x: 7.9, y: 4.9 };
 const SCREEN_CENTRE = new THREE.Vector3(0, 6, 0);
@@ -14,11 +15,11 @@ const SCREEN_CENTRE = new THREE.Vector3(0, 6, 0);
 const corners = (centre: THREE.Vector3, half: { x: number; y: number }) =>
   [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([sx, sy]) => new THREE.Vector3(centre.x + sx * half.x, centre.y + sy * half.y, centre.z));
 
-/** Four quads joining the lens rectangle to the screen rectangle, with an `aAlong` attribute from 0 at the lens to 1 at the screen. */
-function frustumGeometry() {
-  const near = corners(LENS, LENS_HALF), far = corners(SCREEN_CENTRE, SCREEN_HALF);
+/** Three quads (left, right, top) joining the lens rectangle to the screen rectangle, with an `aAlong` attribute from 0 at the lens to 1 at the screen. The underside is left open: the camera sits beneath the beam, and a face there would haze the screen. */
+function frustumGeometry(lensZ: number) {
+  const near = corners(lensAt(lensZ), LENS_HALF), far = corners(SCREEN_CENTRE, SCREEN_HALF);
   const positions: number[] = [], normals: number[] = [], alongs: number[] = [], indices: number[] = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 1; i < 4; i++) {
     const j = (i + 1) % 4;
     const quad: [THREE.Vector3, number][] = [[near[i], 0], [near[j], 0], [far[j], 1], [far[i], 1]];
     const normal = new THREE.Vector3().subVectors(near[j], near[i]).cross(new THREE.Vector3().subVectors(far[i], near[i])).normalize();
@@ -35,7 +36,8 @@ function frustumGeometry() {
 }
 
 /** Dust sampled inside the beam's volume. */
-function dustGeometry(count: number) {
+function dustGeometry(count: number, lensZ: number) {
+  const LENS = lensAt(lensZ);
   const positions = new Float32Array(count * 3), alongs = new Float32Array(count), seeds = new Float32Array(count);
   for (let i = 0; i < count; i++) {
     const along = Math.random();
@@ -52,10 +54,10 @@ function dustGeometry(count: number) {
   return geometry;
 }
 
-export default function Beam({ room, tier }: { room: React.MutableRefObject<RoomState>; tier: "high" | "low" }) {
+export default function Beam({ room, tier, lensZ }: { room: React.MutableRefObject<RoomState>; tier: "high" | "low"; lensZ: number }) {
   const dpr = useThree((state) => state.viewport.dpr);
-  const beam = useMemo(frustumGeometry, []);
-  const dust = useMemo(() => dustGeometry(tier === "high" ? 1400 : 600), [tier]);
+  const beam = useMemo(() => frustumGeometry(lensZ), [lensZ]);
+  const dust = useMemo(() => dustGeometry(tier === "high" ? 1400 : 600, lensZ), [tier, lensZ]);
   useEffect(() => () => { beam.dispose(); }, [beam]);
   useEffect(() => () => { dust.dispose(); }, [dust]);
   const beamUniforms = useMemo(() => ({ uTime: { value: 0 }, uHouse: { value: 0 }, uFlicker: { value: 1 }, uLamp: { value: LAMP.clone().multiplyScalar(0.55) } }), []);

@@ -1,5 +1,6 @@
 "use client";
 import { PerformanceMonitor } from "@react-three/drei";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState, type MutableRefObject } from "react";
 import * as THREE from "three";
@@ -7,7 +8,7 @@ import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLigh
 import Auditorium from "./Auditorium";
 import Beam from "./Beam";
 import CameraRig, { type RoomState } from "./CameraRig";
-import { EYE, FOV } from "./camera";
+import { EYE, FOV, roomLayout } from "./camera";
 import Screen from "./Screen";
 import { theater, useTheater } from "./store";
 
@@ -19,14 +20,17 @@ const CELADON = new THREE.Color("#d2e8ab");
 function HouseLights({ room }: { room: MutableRefObject<RoomState> }) {
   const ambient = useRef<THREE.AmbientLight>(null);
   const hemi = useRef<THREE.HemisphereLight>(null);
+  const down = useRef<THREE.DirectionalLight>(null);
   useFrame(() => {
     const house = room.current.house;
-    if (ambient.current) ambient.current.intensity = 0.05 + house * 0.55;
-    if (hemi.current) hemi.current.intensity = 0.04 + house * 0.8;
+    if (ambient.current) ambient.current.intensity = 0.05 + house * 1.2;
+    if (hemi.current) hemi.current.intensity = 0.04 + house * 1.6;
+    if (down.current) down.current.intensity = house * 2.6;
   });
   return <>
     <ambientLight ref={ambient} color={CELADON} intensity={0.05} />
     <hemisphereLight ref={hemi} color={CELADON} groundColor={new THREE.Color("#0b0d0b")} intensity={0.04} />
+    <directionalLight ref={down} color={CELADON} intensity={0} position={[4, 14, 20]} />
   </>;
 }
 
@@ -48,6 +52,16 @@ function FrameloopControl() {
   return null;
 }
 
+function Room({ tier, room }: { tier: "high" | "low"; room: MutableRefObject<RoomState> }) {
+  const size = useThree((state) => state.size);
+  const layout = roomLayout(size.width < size.height);
+  return <>
+    <Auditorium tier={tier} layout={layout} />
+    <Screen room={room} />
+    <Beam room={room} tier={tier} lensZ={layout.lensZ} />
+  </>;
+}
+
 export default function Theater() {
   const [tier, setTier] = useState<"high" | "low">(() => (typeof window !== "undefined" && window.innerWidth < 900 ? "low" : "high"));
   const room = useRef<RoomState>({ house: 0, time: 0 });
@@ -65,10 +79,11 @@ export default function Theater() {
       <PerformanceMonitor onDecline={() => setTier("low")} flipflops={2} />
       <FrameloopControl />
       <HouseLights room={room} />
-      <Auditorium tier={tier} />
-      <Screen room={room} />
-      <Beam room={room} tier={tier} />
+      <Room tier={tier} room={room} />
       <CameraRig room={room} />
+      {tier === "high" && <EffectComposer multisampling={0}>
+        <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.2} intensity={0.35} mipmapBlur radius={0.45} />
+      </EffectComposer>}
     </Canvas>
   </div>;
 }
