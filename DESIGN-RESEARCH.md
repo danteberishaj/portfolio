@@ -41,4 +41,6 @@ Production build, TypeScript and vitest pass. Playwright captures (software
 WebGL) at 1440, 768 and 390 and in-app browser checks cover the hero, project
 chapters, intertitles, the contact crane, the pause control, context loss and
 the still version. The Impeccable detector reports no non-advisory findings on
-the changed files.
+the changed files. The Impeccable finish review (a fresh agent, code-led, no comp) ran two
+fix rounds and returned ship for the scored fixes; the documenter pass was run inline after
+the documenter agent hit a rate limit.
