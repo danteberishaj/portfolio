@@ -81,7 +81,7 @@ void main() {
   float along = pow(1.0 - vAlong, 2.8) * 0.95 + 0.02;
   float near = smoothstep(3.0, 16.0, dist);
   float flicker = 1.0 + uFlicker * (hash(floor(uTime * 24.0)) - 0.5) * 0.08;
-  float intensity = edge * haze * along * near * flicker * 0.12 * (1.0 - uHouse * 0.85);
+  float intensity = (0.3 + 0.7 * edge) * haze * along * near * flicker * 0.1 * (1.0 - uHouse * 0.85);
   gl_FragColor = vec4(uLamp * intensity, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>
@@ -92,17 +92,25 @@ attribute float aAlong;
 attribute float aSeed;
 uniform float uTime;
 uniform float uPixelRatio;
+uniform vec3 uLens;
+uniform vec3 uScreen;
+uniform vec2 uLensHalf;
+uniform vec2 uScreenHalf;
 varying float vAlong;
 varying float vSeed;
 varying float vNear;
+varying float vAxis;
 void main() {
   vAlong = aAlong;
   vSeed = aSeed;
   vec3 p = position;
+  vec3 axis = mix(uLens, uScreen, aAlong);
+  vec2 halfSize = mix(uLensHalf, uScreenHalf, aAlong);
+  vAxis = clamp(length((p.xy - axis.xy) / halfSize), 0.0, 1.0);
   p += vec3(sin(uTime * 0.3 + aSeed * 6.283), cos(uTime * 0.2 + aSeed * 12.56) * 0.5, sin(uTime * 0.17 + aSeed * 3.1) * 0.3) * 0.12 * (0.3 + aAlong);
   vec4 view = modelViewMatrix * vec4(p, 1.0);
   vNear = smoothstep(1.0, 5.0, -view.z);
-  gl_PointSize = (1.2 + aSeed * 1.6) * uPixelRatio * clamp(14.0 / -view.z, 0.3, 2.2);
+  gl_PointSize = (1.2 + aSeed * 1.8) * (1.25 - 0.55 * vAxis) * uPixelRatio * clamp(14.0 / -view.z, 0.3, 2.4);
   gl_Position = projectionMatrix * view;
 }`;
 
@@ -112,10 +120,11 @@ uniform float uHouse;
 varying float vAlong;
 varying float vSeed;
 varying float vNear;
+varying float vAxis;
 void main() {
   vec2 c = gl_PointCoord - 0.5;
   float disc = smoothstep(0.5, 0.15, length(c));
-  float brightness = pow(1.0 - vAlong, 2.4) * (0.2 + 0.8 * vSeed) * vNear * 0.4 * (1.0 - uHouse * 0.8);
+  float brightness = pow(1.0 - vAlong, 2.0) * (0.2 + 0.8 * vSeed) * (1.0 - 0.75 * vAxis) * vNear * 0.5 * (1.0 - uHouse * 0.8);
   gl_FragColor = vec4(uLamp * disc * brightness, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>

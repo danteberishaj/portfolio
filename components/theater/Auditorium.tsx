@@ -2,6 +2,7 @@
 import { MeshReflectorMaterial } from "@react-three/drei";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 const PER_SIDE = 7, ROW_GAP = 1.9, SEAT_GAP = 0.72, AISLE = 1.5, Z_FIRST = 4.5;
 
@@ -21,24 +22,26 @@ function Seats({ rows }: { rows: number }) {
   const backs = useRef<THREE.InstancedMesh>(null);
   const cushions = useRef<THREE.InstancedMesh>(null);
   const seats = useMemo(() => seatTransforms(rows), [rows]);
+  const backGeometry = useMemo(() => new RoundedBoxGeometry(0.56, 1.0, 0.1, 3, 0.05), []);
+  const cushionGeometry = useMemo(() => new RoundedBoxGeometry(0.5, 0.36, 0.48, 3, 0.05), []);
   useLayoutEffect(() => {
     const m = new THREE.Matrix4();
+    const tilt = new THREE.Quaternion().setFromEuler(new THREE.Euler(0.14, 0, 0));
+    const scale = new THREE.Vector3(1, 1, 1);
     seats.forEach((seat, i) => {
-      m.makeTranslation(seat.x, 0.78, seat.z + 0.19);
+      m.compose(new THREE.Vector3(seat.x, 0.8, seat.z + 0.2), tilt, scale);
       backs.current?.setMatrixAt(i, m);
-      m.makeTranslation(seat.x, 0.42, seat.z - 0.12);
+      m.makeTranslation(seat.x, 0.4, seat.z - 0.1);
       cushions.current?.setMatrixAt(i, m);
     });
     if (backs.current) backs.current.instanceMatrix.needsUpdate = true;
     if (cushions.current) cushions.current.instanceMatrix.needsUpdate = true;
   }, [seats]);
   return <group>
-    <instancedMesh key={`b${seats.length}`} ref={backs} args={[undefined, undefined, seats.length]}>
-      <boxGeometry args={[0.58, 1.0, 0.12]} />
+    <instancedMesh key={`b${seats.length}`} ref={backs} args={[backGeometry, undefined, seats.length]}>
       <meshStandardMaterial color="#1b201b" roughness={0.88} metalness={0} />
     </instancedMesh>
-    <instancedMesh key={`c${seats.length}`} ref={cushions} args={[undefined, undefined, seats.length]}>
-      <boxGeometry args={[0.58, 0.4, 0.5]} />
+    <instancedMesh key={`c${seats.length}`} ref={cushions} args={[cushionGeometry, undefined, seats.length]}>
       <meshStandardMaterial color="#171c17" roughness={0.92} metalness={0} />
     </instancedMesh>
   </group>;

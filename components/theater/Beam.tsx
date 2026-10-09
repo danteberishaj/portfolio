@@ -61,7 +61,7 @@ export default function Beam({ room, tier, lensZ }: { room: React.MutableRefObje
   useEffect(() => () => { beam.dispose(); }, [beam]);
   useEffect(() => () => { dust.dispose(); }, [dust]);
   const beamUniforms = useMemo(() => ({ uTime: { value: 0 }, uHouse: { value: 0 }, uFlicker: { value: 1 }, uLamp: { value: LAMP.clone().multiplyScalar(0.55) } }), []);
-  const dustUniforms = useMemo(() => ({ uTime: { value: 0 }, uHouse: { value: 0 }, uPixelRatio: { value: 1 }, uLamp: { value: LAMP.clone() } }), []);
+  const dustUniforms = useMemo(() => ({ uTime: { value: 0 }, uHouse: { value: 0 }, uPixelRatio: { value: 1 }, uLamp: { value: LAMP.clone() }, uLens: { value: lensAt(lensZ) }, uScreen: { value: SCREEN_CENTRE.clone() }, uLensHalf: { value: new THREE.Vector2(LENS_HALF.x, LENS_HALF.y) }, uScreenHalf: { value: new THREE.Vector2(SCREEN_HALF.x, SCREEN_HALF.y) } }), [lensZ]);
   useFrame(() => {
     beamUniforms.uTime.value = room.current.time; beamUniforms.uHouse.value = room.current.house;
     dustUniforms.uTime.value = room.current.time; dustUniforms.uHouse.value = room.current.house; dustUniforms.uPixelRatio.value = dpr;

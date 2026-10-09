@@ -42,7 +42,7 @@ export function PrivateWork() {
   return <section id="confidential" className="private-work" data-scene="private">
     <div className="screen-stage sticky">
       <div className="projected">
-        <h2>Some work<br />stays <span>between us.</span></h2>
+        <h2>Some work stays<br /><span>between us.</span></h2>
         <p>Selected collaborations under NDA.<br />The details are private. The impact isn’t.</p>
       </div>
       <div className="slot" data-slot="private" />
