@@ -25,6 +25,6 @@ describe("theater store", () => {
   test("maps scene ids to project indices", () => {
     expect(projectOf("p4")).toBe(4);
     expect(projectOf("hero")).toBe(-1);
-    expect(projectOf("private")).toBe(-1);
+    expect(projectOf("contact")).toBe(-1);
   });
 });

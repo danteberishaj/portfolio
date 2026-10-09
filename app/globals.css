@@ -69,7 +69,7 @@ button:active { transform: scale(.97); }
 /* Each reel parks the camera a step closer than the last, so the walk down the aisle is visible. */
 .chapter .slot { grid-column: 2; grid-row: 1; width: min(calc(58vw + var(--step) * 0.8vw), calc(1.6 * (100svh - 170px))); }
 .hero .slot { width: var(--slot-hero); }
-.intertitle .slot, .approach .slot, .private-work .slot { width: var(--slot-title); }
+.intertitle .slot, .approach .slot { width: var(--slot-title); }
 .closing .slot { width: var(--slot-contact); }
 .projected { position: relative; z-index: 1; display: grid; place-content: center; text-align: center; padding: 4%; pointer-events: none; transform: translate(var(--px), var(--py)); }
 .projected > * { pointer-events: auto; }
@@ -95,12 +95,11 @@ button:active { transform: scale(.97); }
 
 /* Intertitles and text scenes: the title card plays on a near-full screen. */
 .intertitle { min-height: 100svh; display: grid; align-items: center; padding: var(--nav) var(--gutter) 0; }
-.intertitle .projected, .approach .projected, .private-work .projected { width: var(--slot-title); }
-.intertitle h2, .approach h2, .private-work h2 { font-size: clamp(44px, 7vw, 132px); }
-.approach, .private-work { padding-top: var(--nav); }
-.approach .screen-stage, .private-work .screen-stage { min-height: calc(100svh - var(--nav)); padding-inline: var(--gutter); }
-.approach-body { padding-top: 4svh; padding-bottom: 14svh; }
-.private-body { padding-top: 4svh; padding-bottom: 16svh; }
+.intertitle .projected, .approach .projected { width: var(--slot-title); }
+.intertitle h2, .approach h2 { font-size: clamp(44px, 7vw, 132px); }
+.approach { padding-top: var(--nav); }
+.approach .screen-stage { min-height: calc(100svh - var(--nav)); padding-inline: var(--gutter); }
+.approach-body { padding-top: 4svh; padding-bottom: 16svh; }
 
 /* Chapters: the screen holds while the copy below it is read, then the camera walks to the next reel. */
 .chapter { min-height: 130svh; }
@@ -147,7 +146,7 @@ summary::-webkit-details-marker { display: none; }
 .still-frame[data-reduced] .still-image { transition: none; }
 .still-image img { object-fit: cover; object-position: top; }
 
-/* Approach and private work rows read on the dark room. */
+/* Approach rows read on the dark room. */
 .capability-disclosure { border-top: 1px solid var(--line); }
 .capability-disclosure:last-child { border-bottom: 1px solid var(--line); }
 .capability-disclosure summary { list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 27px 0; font-size: clamp(25px,3.2vw,45px); letter-spacing: -.03em; }
@@ -162,15 +161,6 @@ summary::-webkit-details-marker { display: none; }
 .about-footnote > p { font-size: 13px; color: var(--muted); max-width: 370px; }
 .experience-facts { display: flex; gap: 24px; color: var(--muted); font-size: 12px; }
 .experience-facts b { display: block; font-weight: 400; font-size: 25px; color: var(--ink); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
-.private-disclosure { border-top: 1px solid var(--line); }
-.private-disclosure:last-child { border-bottom: 1px solid var(--line); }
-.private-disclosure summary { list-style: none; padding: 28px 0; display: grid; grid-template-columns: 1.5fr 1fr 24px; gap: 20px; align-items: center; cursor: pointer; font-size: 21px; }
-.private-role { font-size: 12px; color: var(--muted); }
-.private-disclosure .icon { width: 21px; height: 21px; transition: transform 200ms var(--ease-out); }
-.private-disclosure[open] .icon { transform: rotate(45deg); }
-.private-detail { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; padding-bottom: 30px; }
-.private-detail p { max-width: 450px; font-size: 14px; color: var(--muted); }
-.private-detail > span { font-size: 13px; color: var(--accent); }
 
 /* The close: house lights up, one invitation. */
 .closing { padding-top: var(--nav); }
@@ -197,7 +187,7 @@ summary::-webkit-details-marker { display: none; }
   .motion-toggle:hover { background: var(--surface-raised); }
   .cta:hover .cta-circle { background: var(--surface-raised); transform: translateY(5px); }
   .closing-title:hover .closing-arrow { transform: rotate(45deg); }
-  .project-details summary:hover, .private-disclosure summary:hover, .capability-disclosure summary:hover { color: var(--accent); }
+  .project-details summary:hover, .capability-disclosure summary:hover { color: var(--accent); }
   .case-link:hover .icon { transform: translate(2px,-2px); }
   .shots-arrows button:hover { background: var(--surface-raised); }
   .shots-dots button:hover::before { background: var(--muted); }
@@ -210,7 +200,6 @@ summary::-webkit-details-marker { display: none; }
   .chapter-copy { grid-column: 1; grid-row: 2; width: 100%; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
   .chapter-controls { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; align-items: center; width: 100%; }
   .chapter-title h3 { font-size: 48px; }
-  .private-disclosure summary { font-size: 18px; }
 }
 @media (max-width:767px) {
   :root { --nav: 64px; --gutter: 22px; --slot-hero: 92vw; --slot-title: 96vw; --slot-project: 92vw; --slot-contact: 86vw; }
@@ -232,7 +221,7 @@ summary::-webkit-details-marker { display: none; }
   .hero-foot { flex-direction: column; align-items: flex-start; gap: 24px; }
   .cta-circle { width: 46px; height: 46px; }
   .projected p { margin-top: 16px; font-size: 13px; }
-  .intertitle h2, .approach h2, .private-work h2 { font-size: clamp(40px, 12.5vw, 72px); }
+  .intertitle h2, .approach h2 { font-size: clamp(40px, 12.5vw, 72px); }
   .chapter { min-height: auto; padding-block: 7svh; }
   .chapter .stage { position: relative; min-height: auto; grid-template-rows: auto auto; row-gap: 22px; padding-top: 0; padding-bottom: 0; }
   .chapter-copy { grid-template-columns: 1fr; gap: 20px; }
@@ -248,10 +237,6 @@ summary::-webkit-details-marker { display: none; }
   .capability-body > div { justify-content: flex-start; gap: 6px; }
   .about-footnote { flex-direction: column; gap: 25px; margin-top: 30px; }
   .experience-facts { width: 100%; justify-content: space-between; font-size: 11px; }
-  .private-disclosure summary { grid-template-columns: 1fr 20px; gap: 9px; padding: 24px 0; font-size: 17px; }
-  .private-role { grid-column: 1; grid-row: 2; font-size: 11px; }
-  .private-disclosure summary .icon { grid-column: 2; grid-row: 1 / 3; width: 19px; }
-  .private-detail { grid-template-columns: 1fr; gap: 16px; }
   .closing-title { flex-direction: column; align-items: flex-start; gap: 18px; }
   .closing-title h2 { font-size: clamp(34px, 9.6vw, 60px); white-space: normal; }
   .closing-arrow { width: 52px; height: 52px; }

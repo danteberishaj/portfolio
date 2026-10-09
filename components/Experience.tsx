@@ -4,7 +4,7 @@ import Chapters from "./Chapters";
 import Grain from "./Grain";
 import Nav from "./Nav";
 import Icon from "./PortfolioIcon";
-import { Approach, Closing, PrivateWork } from "./Sections";
+import { Approach, Closing } from "./Sections";
 import { useTheater } from "./theater/store";
 import useStillMode from "./useStillMode";
 
@@ -33,7 +33,6 @@ export default function Experience() {
       </section>
       <Chapters still={still} />
       <Approach />
-      <PrivateWork />
       <Closing />
     </main>
     <div className="vignette" aria-hidden />

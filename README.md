@@ -32,15 +32,14 @@ Run `npm run build` followed by `npm start` for a production preview.
 
 ## Personalize before publishing
 
-The site belongs to Dante Berishaj. The email, experience counts, and NDA
-claims are retained as supplied. Replace or verify these before using the
+The site belongs to Dante Berishaj. The email and experience counts are retained as supplied. Replace or verify these before using the
 page publicly.
 
 - Name and metadata: `app/layout.tsx`.
 - Contact address: `components/Sections.tsx` (`EMAIL`).
 - Projects and slides: `components/projects.ts`; images in `public/projects`
   (see the README there).
-- Capabilities and private work: `components/Sections.tsx`.
+- Capabilities: `components/Sections.tsx`.
 - Layout, type and colour: `app/globals.css`. The scene: `components/theater`.
 - Visual system and motion conventions: `DESIGN.md`.
 

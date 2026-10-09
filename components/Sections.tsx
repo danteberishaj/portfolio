@@ -7,11 +7,6 @@ const capabilities = [
   { title: "Motion & 3D", copy: "From a satisfying interaction to a world you can move through.", stack: ["Three.js", "WebGL", "Framer Motion", "GSAP"] },
   { title: "Systems", copy: "Considered foundations that keep design and engineering in sync.", stack: ["Design systems", "Node.js", "Figma"] },
 ];
-const privateWork = [
-  { title: "Fortune 500 FinTech", role: "Lead Frontend Engineer", detail: "Rebuilt a high-traffic trading dashboard for real-time data, cutting render latency and modernizing a legacy stack.", result: "60% faster load / 1M+ daily users" },
-  { title: "Global Health Platform", role: "Full-Stack Developer", detail: "Designed a HIPAA-compliant patient portal with accessible, animated flows and offline support.", result: "WCAG AA accessibility / +35% engagement" },
-  { title: "Enterprise SaaS Startup", role: "Frontend Lead", detail: "Built a themeable component library and 3D onboarding experience adopted across five product teams.", result: "5 teams / 40% fewer UI bugs" },
-];
 const EMAIL = "hello@example.com";
 
 export function Approach() {
@@ -34,24 +29,6 @@ export function Approach() {
         <p>Usually experimenting with shaders, contributing to open source, or chasing a better cup of coffee.</p>
         <div className="experience-facts"><span><b>5+</b> years</span><span><b>40+</b> projects</span><span><b>20+</b> clients</span></div>
       </div>
-    </div>
-  </section>;
-}
-
-export function PrivateWork() {
-  return <section id="confidential" className="private-work" data-scene="private">
-    <div className="screen-stage sticky">
-      <div className="projected">
-        <h2>Some work stays<br /><span>between us.</span></h2>
-        <p>Selected collaborations under NDA.<br />The details are private. The impact isn’t.</p>
-      </div>
-      <div className="slot" data-slot="private" />
-    </div>
-    <div className="page-width private-body">
-      {privateWork.map((item) => <details className="private-disclosure" key={item.title}>
-        <summary><span>{item.title}</span><span className="private-role">{item.role}</span><Icon name="plus" /></summary>
-        <div className="private-detail"><p>{item.detail}</p><span>{item.result}</span></div>
-      </details>)}
     </div>
   </section>;
 }

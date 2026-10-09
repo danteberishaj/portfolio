@@ -1,7 +1,7 @@
 "use client";
 import { useSyncExternalStore } from "react";
 
-export type SceneId = "hero" | "work-title" | `p${number}` | "about" | "private" | "contact";
+export type SceneId = "hero" | "work-title" | `p${number}` | "about" | "contact";
 export type TheaterState = { active: SceneId; slides: number[]; paused: boolean; ready: boolean };
 
 /** The one piece of state the DOM controls and the 3D screen share. No React state, no re-renders on scroll. */

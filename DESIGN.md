@@ -154,10 +154,10 @@ A green-black room lit by one pale lamp, with celadon as the only colour the int
 
 ### Hierarchy
 - **Display** (600, clamp(52px, 6.4vw, 118px), line-height .9, tracking -.025em, uppercase): the hero title card, two lines, the second line celadon at 1.34em. Mobile: clamp(34px, 11.5vw, 60px) with the second line at 1.4em.
-- **Intertitle** (600, clamp(44px, 7vw, 132px), line-height .9, uppercase): "Selected perspectives.", "Good design is good development.", "Some work stays between us.", two lines with the accent inline; mobile clamp(40px, 12.5vw, 72px). The closing card uses clamp(40px, 4.6vw, 88px) and stays on two lines at desktop.
+- **Intertitle** (600, clamp(44px, 7vw, 132px), line-height .9, uppercase): "Selected perspectives.", "Good design is good development.", two lines with the accent inline; mobile clamp(40px, 12.5vw, 72px). The closing card uses clamp(40px, 4.6vw, 88px) and stays on two lines at desktop.
 - **Title** (600, clamp(40px, 3.6vw, 60px), line-height .9, tracking -.02em, uppercase): project names, balanced wrapping; 48px at 1024, 44px on mobile.
-- **Headline** (Archivo 500, clamp(25px, 3.2vw, 45px), tracking -.03em): capability disclosure summaries; private-work summaries at 21px (18px at 1024, 17px mobile).
-- **Body** (400, 14px, 1.6): project descriptions (46ch measure), disclosure bodies (16px in capabilities, 14px in private work), contact lines. Projected paragraphs under intertitles: clamp(13px, 1.05vw, 16px) in ink with a 24px dark text shadow.
+- **Headline** (Archivo 500, clamp(25px, 3.2vw, 45px), tracking -.03em): capability disclosure summaries.
+- **Body** (400, 14px, 1.6): project descriptions (46ch measure), capability disclosure bodies at 16px, contact lines. Projected paragraphs under intertitles: clamp(13px, 1.05vw, 16px) in ink with a 24px dark text shadow.
 - **Label** (400, 12px): slide captions with tabular figures, "Behind the project", nav links at 13px, the motion toggle, footer at 12px (11px mobile). Categories 15px muted, tags and footnotes 11px.
 
 ### Named Rules
@@ -170,13 +170,13 @@ A green-black room lit by one pale lamp, with celadon as the only colour the int
 The document is the script and its slots are the camera path. Every scene renders a 16:10 `slot`; its width sets how close the camera parks:
 
 - Hero: `min(58vw, 124svh)`, centred, the title projected inside it; one line of description and the "See the work" action sit bottom-left.
-- Work intertitle, approach and private work: `min(78vw, 131svh)`, so the screen edges and the first seat row stay in frame.
+- Work intertitle and approach: `min(78vw, 131svh)`, so the screen edges and the first seat row stay in frame.
 - Project chapters (desktop, over 1024px): the copy column (`minmax(240px, 1fr)`) beside the screen, which grows from 58vw by 0.8vw per chapter, capped at `1.6 * (100svh - 170px)` so the walk down the aisle is visible on 900px and 768px tall viewports. Each chapter is 130svh tall with a sticky 100svh stage padded `nav + 1svh` on top and 4vw at the sides; the stage parks the camera for 30svh while the copy is read.
 - Project chapters (768 to 1024px): stacked, slot `min(62vw + 0.4vw per chapter, 1.6 * (100svh - 390px))`, copy in two columns below.
 - Project chapters (under 768px): stacked and not sticky, slot 92vw, copy in one column.
 - Contact: `min(50vw, 72svh)` with the eye raised to 4m and the house lights up, so the camera cranes back over the seats.
 
-Containers: content caps at 1480px with a 6vw gutter (60px over 1600px, 22px under 768px). Navigation is fixed at 72px (64px mobile). Section bodies breathe with svh units (approach 4svh/14svh, private 4svh/16svh). Breakpoints: 1600, 1024, 767, 370.
+Containers: content caps at 1480px with a 6vw gutter (60px over 1600px, 22px under 768px). Navigation is fixed at 72px (64px mobile). Section bodies breathe with svh units (the approach body 4svh above and 16svh below). Breakpoints: 1600, 1024, 767, 370.
 
 ## Elevation & Depth
 
@@ -203,7 +203,6 @@ The 16:10 rectangle is the only large shape; it is the screen in every scene and
 ### Disclosures
 - **Behind the project:** 12px summary row between two 1px lines, max 280px, plus icon rotating 45° when open, body 12px muted.
 - **Capabilities:** `headline` summaries between 1px lines, celadon when open; the body is a two-column grid of a 16px paragraph and outlined tags (`capability-tag`).
-- **Private work:** 21px summaries in a title / role / icon grid; the detail shows the paragraph and the celadon result line.
 
 ### Title cards (projected text)
 - **Style:** centred inside the slot, uppercase display face, the first line ink and the accent inline in celadon, a 46px lamp glow behind; in the theater they flicker on a 5.3s stepped cycle and fade in with the camera (opacity follows the slot's presence), and they ride the screen's pointer parallax through `--px` / `--py`.
