@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { blendSlots, EYE, presence, projectScreen, solveCamera } from "../components/theater/camera";
+import { blendSlots, chooseActive, EYE, presence, projectScreen, solveCamera } from "../components/theater/camera";
 
 const vp = { width: 1440, height: 900 };
 
@@ -36,7 +36,7 @@ describe("solveCamera", () => {
 });
 
 describe("blendSlots", () => {
-  const fallback = { rect: { left: 1, top: 1, width: 1, height: 1 }, eye: EYE, house: 0, active: "hero", presence: 0 };
+  const fallback = { rect: { left: 1, top: 1, width: 1, height: 1 }, eye: EYE, house: 0, active: "hero", presence: 0, presences: [] };
   test("picks the slot at the focus and tracks it exactly", () => {
     const a = { id: "p0", rect: { left: 100, top: 300, width: 800, height: 500 }, eye: EYE, house: 0 };
     const b = { id: "p1", rect: { left: 100, top: 1900, width: 800, height: 500 }, eye: EYE, house: 1 };
@@ -59,5 +59,22 @@ describe("blendSlots", () => {
   test("holds the fallback when nothing is present", () => {
     const far = { id: "p0", rect: { left: 0, top: 5000, width: 10, height: 6 }, eye: EYE, house: 0 };
     expect(blendSlots([far], 900, fallback).rect).toEqual(fallback.rect);
+  });
+});
+
+describe("chooseActive", () => {
+  test("keeps the incumbent on an empty hand", () => {
+    expect(chooseActive([], "p3")).toBe("p3");
+  });
+  test("a title card takes the screen as soon as it is nearly level", () => {
+    expect(chooseActive([{ id: "p10", presence: 0.55 }, { id: "about", presence: 0.45 }], "p10")).toBe("about");
+  });
+  test("a project needs a clear majority over a title card", () => {
+    expect(chooseActive([{ id: "p10", presence: 0.6 }, { id: "about", presence: 0.45 }], "about")).toBe("about");
+    expect(chooseActive([{ id: "p10", presence: 0.8 }, { id: "about", presence: 0.4 }], "about")).toBe("p10");
+  });
+  test("projects hand over to each other with a margin", () => {
+    expect(chooseActive([{ id: "p1", presence: 0.6 }, { id: "p2", presence: 0.5 }], "p1")).toBe("p1");
+    expect(chooseActive([{ id: "p1", presence: 0.3 }, { id: "p2", presence: 0.7 }], "p1")).toBe("p2");
   });
 });

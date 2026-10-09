@@ -2,11 +2,17 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef, type MutableRefObject } from "react";
 import * as THREE from "three";
-import { blendSlots, EYE, roomLayout, solveCamera, type Target } from "./camera";
+import { blendSlots, chooseActive, EYE, roomLayout, solveCamera, type Target } from "./camera";
 import { theater, type SceneId } from "./store";
 import useSlots from "./useSlots";
 
 export type RoomState = { house: number; time: number };
+
+const projectedCache = new WeakMap<HTMLElement, HTMLElement | null>();
+function projectedOf(slot: HTMLElement): HTMLElement | null {
+  if (!projectedCache.has(slot)) projectedCache.set(slot, slot.parentElement?.querySelector<HTMLElement>(".projected") ?? null);
+  return projectedCache.get(slot) ?? null;
+}
 
 /**
  * Reads every scene slot each frame, blends them by presence, and lands the screen on the result.
@@ -17,7 +23,7 @@ export default function CameraRig({ room }: { room: MutableRefObject<RoomState> 
   const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera;
   const size = useThree((state) => state.size);
   const pointer = useRef({ x: 0, y: 0, tx: 0, ty: 0 });
-  const last = useRef<Target>({ rect: { left: 0, top: 0, width: 1, height: 0.625 }, eye: EYE, house: 0, active: "hero", presence: 0 });
+  const last = useRef<Target>({ rect: { left: 0, top: 0, width: 1, height: 0.625 }, eye: EYE, house: 0, active: "hero", presence: 0, presences: [] });
   const first = useRef(true);
 
   useEffect(() => {
@@ -42,7 +48,16 @@ export default function CameraRig({ room }: { room: MutableRefObject<RoomState> 
     });
     const target = blendSlots(measured, size.height, last.current);
     last.current = target;
-    if (target.active && target.active !== theater.get().active) theater.setActive(target.active as SceneId);
+    const active = chooseActive(target.presences, theater.get().active);
+    if (active && active !== theater.get().active) theater.setActive(active as SceneId);
+    // Projected text fades in with the camera instead of popping onto a screen that is still playing a slide.
+    slots.current.forEach((el, i) => {
+      const projected = projectedOf(el);
+      if (!projected) return;
+      const p = measured[i] ? target.presences.find((entry) => entry.id === measured[i].id)?.presence ?? 0 : 0;
+      const opacity = Math.min(1, Math.max(0, (p - 0.3) / 0.4));
+      if (projected.dataset.opacity !== opacity.toFixed(2)) { projected.dataset.opacity = opacity.toFixed(2); projected.style.opacity = String(opacity); }
+    });
     room.current.house = target.house;
 
     const layout = roomLayout(size.width < size.height);

@@ -78,6 +78,14 @@ export default function Screen({ room }: { room: MutableRefObject<RoomState> }) 
     };
 
     if (s.phase === "idle" && s.want.src !== s.shown.src) begin(s.want);
+    // While holding for a texture, follow the latest wish instead of finishing a reel nobody asked for.
+    const holding = s.phase === "wait" || (s.phase === "cut" && !s.cutStarted);
+    if (holding && s.heading && s.want.src !== s.heading.src) {
+      const next = s.want;
+      s.heading = next; s.loaded = null; s.t = 0;
+      if (next.src) { const src = next.src; cache.get(src).then((loaded) => { if (s.heading?.src === src) s.loaded = loaded; }).catch(() => { if (s.heading?.src === src) s.heading = { src: null, project: next.project }; }); }
+      if (s.phase === "cut") s.phase = "out";
+    }
 
     if (s.phase !== "idle") {
       s.t += dt;
@@ -97,7 +105,7 @@ export default function Screen({ room }: { room: MutableRefObject<RoomState> }) 
         if (s.t >= IN) { u.uBrightness.value = 1; s.phase = "idle"; s.shown = heading; s.heading = null; }
       } else if (s.phase === "cut") {
         if (!s.cutStarted) {
-          if (!s.loaded) { s.t = 0; if (!heading.src) { s.phase = "out"; } }
+          if (!s.loaded) { if (!heading.src || s.t > WAIT_LIMIT) { s.phase = "out"; s.t = 0; } }
           else { s.cutStarted = true; u.uB.value = s.loaded.texture; u.uHasB.value = 1; u.uMix.value = 0; s.t = 0; s.targetColour.setRGB(s.loaded.colour[0], s.loaded.colour[1], s.loaded.colour[2], THREE.SRGBColorSpace); }
         } else {
           const k = easeOut(s.t / CUT);

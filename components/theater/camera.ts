@@ -10,7 +10,7 @@ export function roomLayout(portrait: boolean) {
 
 export type Rect = { left: number; top: number; width: number; height: number };
 export type Slot = { id: string; rect: Rect; eye: number; house: number };
-export type Target = { rect: Rect; eye: number; house: number; active: string | null; presence: number };
+export type Target = { rect: Rect; eye: number; house: number; active: string | null; presence: number; presences: { id: string; presence: number }[] };
 export type CameraPose = { x: number; y: number; z: number; shiftY: number };
 export type Viewport = { width: number; height: number };
 
@@ -23,8 +23,25 @@ export function presence(centreY: number, viewportHeight: number): number {
 }
 
 /** Presence-weighted blend of every slot near the focus; holds the fallback when none is near. */
+/** Which scene owns the screen. Title cards win ties and take over early; a project needs a clear majority, so a slide never plays under a title. */
+export function chooseActive(presences: { id: string; presence: number }[], current: string | null): string | null {
+  if (!presences.length) return current;
+  const isProject = (id: string) => /^p\d+$/.test(id);
+  const sorted = [...presences].sort((a, b) => b.presence - a.presence);
+  const best = sorted[0];
+  if (best.presence <= 0) return current;
+  const incumbentPresence = presences.find((p) => p.id === current)?.presence ?? 0;
+  const bestTitle = sorted.find((p) => !isProject(p.id));
+  // A title card claims the screen as soon as it is nearly level with whatever leads.
+  if (bestTitle && bestTitle.id !== current && bestTitle.presence >= best.presence - 0.15 && bestTitle.presence > incumbentPresence - 0.15) return bestTitle.id;
+  if (best.id === current) return current;
+  // A project needs a clear majority over the incumbent.
+  return best.presence - incumbentPresence > 0.25 ? best.id : current;
+}
+
 export function blendSlots(slots: Slot[], viewportHeight: number, fallback: Target): Target {
   let total = 0, best = 0, active: string | null = null;
+  const presences: { id: string; presence: number }[] = [];
   const rect = { left: 0, top: 0, width: 0, height: 0 };
   let eye = 0, house = 0;
   for (const slot of slots) {
@@ -34,12 +51,13 @@ export function blendSlots(slots: Slot[], viewportHeight: number, fallback: Targ
     rect.left += slot.rect.left * p; rect.top += slot.rect.top * p;
     rect.width += slot.rect.width * p; rect.height += slot.rect.height * p;
     eye += slot.eye * p; house += slot.house * p;
+    presences.push({ id: slot.id, presence: p });
     if (p > best) { best = p; active = slot.id; }
   }
-  if (total < 0.02) return { ...fallback, presence: 0 };
+  if (total < 0.02) return { ...fallback, presence: 0, presences };
   return {
     rect: { left: rect.left / total, top: rect.top / total, width: rect.width / total, height: rect.height / total },
-    eye: eye / total, house: house / total, active, presence: total,
+    eye: eye / total, house: house / total, active, presence: total, presences,
   };
 }
 
