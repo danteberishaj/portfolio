@@ -58,7 +58,7 @@ export default function Screen({ room }: { room: MutableRefObject<RoomState> }) 
   }, [active, slides, narrow, cache, invalidate]);
 
   useFrame((_, delta) => {
-    const dt = Math.min(delta, 0.05);
+    const dt = Math.min(delta, 0.25); // a long frame advances the reel by up to a quarter second, so slow renderers still settle
     const s = state.current, u = uniforms;
     if (!theater.get().paused) u.uTime.value += dt;
 
