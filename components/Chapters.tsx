@@ -26,7 +26,7 @@ function ProjectChapter({ project, index, still }: { project: Project; index: nu
   const count = shots.length;
   const shot = shots[slide];
   const go = (n: number) => theater.setSlide(index, ((n % count) + count) % count);
-  const walk = { "--step": index, "--shift": index % 2 ? 1.2 : -1.2 } as CSSProperties;
+  const walk = { "--step": index } as CSSProperties;
   return <article className={`chapter chapter-${project.kind}`} id={`project-${project.kind}`} data-scene={`p${index}`} style={walk}>
     <div className="stage">
       <div className="slot" data-slot={`p${index}`}>{still && <StillFrame project={index} shots={shots} />}</div>

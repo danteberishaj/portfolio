@@ -35,7 +35,7 @@ export default function Screen({ room }: { room: MutableRefObject<RoomState> }) 
     phase: "idle" as Phase, t: 0,
     shown: { src: null, project: -1 } as Heading, heading: null as Heading | null, want: { src: null, project: -1 } as Heading,
     loaded: null as Loaded | null, cutStarted: false, hasImage: 0,
-    colour: LAMP.clone(), targetColour: LAMP.clone(),
+    colour: LAMP.clone(), targetColour: LAMP.clone(), reported: "", reels: 0,
   });
 
   useLayoutEffect(() => { light.current?.lookAt(0, 6, 30); }, []);
@@ -75,6 +75,7 @@ export default function Screen({ room }: { room: MutableRefObject<RoomState> }) 
       }
       const cut = heading.src !== null && s.shown.src !== null && heading.project === s.shown.project;
       s.phase = cut ? "cut" : "out";
+      if (!cut) s.reels += 1;
     };
 
     if (s.phase === "idle" && s.want.src !== s.shown.src) begin(s.want);
@@ -116,6 +117,7 @@ export default function Screen({ room }: { room: MutableRefObject<RoomState> }) 
       invalidate();
     }
 
+    if (s.reported !== s.phase) { s.reported = s.phase; document.documentElement.dataset.reel = s.phase; document.documentElement.dataset.reels = String(s.reels); }
     s.colour.lerp(s.targetColour, 1 - Math.exp(-4 * dt));
     if (light.current) {
       light.current.color.copy(s.colour);

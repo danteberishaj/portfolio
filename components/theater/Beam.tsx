@@ -42,8 +42,9 @@ function dustGeometry(count: number, lensZ: number) {
   for (let i = 0; i < count; i++) {
     const along = Math.random();
     const hx = LENS_HALF.x + (SCREEN_HALF.x - LENS_HALF.x) * along, hy = LENS_HALF.y + (SCREEN_HALF.y - LENS_HALF.y) * along;
-    positions[i * 3] = LENS.x + (SCREEN_CENTRE.x - LENS.x) * along + (Math.random() * 2 - 1) * hx;
-    positions[i * 3 + 1] = LENS.y + (SCREEN_CENTRE.y - LENS.y) * along + (Math.random() * 2 - 1) * hy;
+    const radius = Math.pow(Math.random(), 1.45), angle = Math.random() * Math.PI * 2;
+    positions[i * 3] = LENS.x + (SCREEN_CENTRE.x - LENS.x) * along + Math.cos(angle) * radius * hx;
+    positions[i * 3 + 1] = LENS.y + (SCREEN_CENTRE.y - LENS.y) * along + Math.sin(angle) * radius * hy;
     positions[i * 3 + 2] = LENS.z + (SCREEN_CENTRE.z - LENS.z) * along;
     alongs[i] = along; seeds[i] = Math.random();
   }

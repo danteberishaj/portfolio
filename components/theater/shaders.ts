@@ -110,7 +110,7 @@ void main() {
   p += vec3(sin(uTime * 0.3 + aSeed * 6.283), cos(uTime * 0.2 + aSeed * 12.56) * 0.5, sin(uTime * 0.17 + aSeed * 3.1) * 0.3) * 0.12 * (0.3 + aAlong);
   vec4 view = modelViewMatrix * vec4(p, 1.0);
   vNear = smoothstep(1.0, 5.0, -view.z);
-  gl_PointSize = (1.2 + aSeed * 1.8) * (1.25 - 0.55 * vAxis) * uPixelRatio * clamp(14.0 / -view.z, 0.3, 2.4);
+  gl_PointSize = (1.2 + aSeed * 1.8) * (1.4 - 0.9 * vAxis) * uPixelRatio * clamp(14.0 / -view.z, 0.3, 2.4);
   gl_Position = projectionMatrix * view;
 }`;
 
@@ -124,7 +124,7 @@ varying float vAxis;
 void main() {
   vec2 c = gl_PointCoord - 0.5;
   float disc = smoothstep(0.5, 0.15, length(c));
-  float brightness = pow(1.0 - vAlong, 2.0) * (0.2 + 0.8 * vSeed) * (1.0 - 0.75 * vAxis) * vNear * 0.5 * (1.0 - uHouse * 0.8);
+  float brightness = pow(1.0 - vAlong, 2.0) * (0.2 + 0.8 * vSeed) * pow(1.0 - vAxis, 2.2) * vNear * 0.55 * (1.0 - uHouse * 0.8);
   gl_FragColor = vec4(uLamp * disc * brightness, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>

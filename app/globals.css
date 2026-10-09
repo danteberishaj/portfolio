@@ -8,7 +8,7 @@
   --accent: #d2e8ab; --accent-ink: #172112; --lamp: #e9f3d6;
   --ease-out: cubic-bezier(.23,1,.32,1); --ease-in-out: cubic-bezier(.77,0,.175,1);
   --nav: 72px; --gutter: 6vw; --radius: 14px;
-  --slot-hero: min(54vw, 112svh); --slot-title: min(82vw, 128svh); --slot-project: min(54vw, 83svh); --slot-contact: min(50vw, 72svh); --step: 0; --shift: 0;
+  --slot-hero: min(58vw, 124svh); --slot-title: min(78vw, 131svh); --slot-project: min(58vw, 83svh); --slot-contact: min(50vw, 72svh); --step: 0;
   --px: 0px; --py: 0px;
   color-scheme: dark;
 }
@@ -66,8 +66,8 @@ button:active { transform: scale(.97); }
 .screen-stage { display: grid; justify-items: center; align-items: center; width: 100%; }
 .screen-stage > * { grid-area: 1 / 1; }
 .slot { position: relative; aspect-ratio: 16 / 10; width: var(--slot-project); }
-/* Each reel parks the camera a step closer than the last, and a little to one side, so the walk down the aisle is visible. */
-.chapter .slot { width: min(calc(54vw + var(--step) * 0.4vw), calc(1.6 * (100svh - 390px))); margin-left: calc(var(--shift) * 1vw); }
+/* Each reel parks the camera a step closer than the last, so the walk down the aisle is visible. */
+.chapter .slot { grid-column: 2; grid-row: 1; width: min(calc(58vw + var(--step) * 0.8vw), calc(1.6 * (100svh - 170px))); }
 .hero .slot { width: var(--slot-hero); }
 .intertitle .slot, .approach .slot, .private-work .slot { width: var(--slot-title); }
 .closing .slot { width: var(--slot-contact); }
@@ -104,9 +104,9 @@ button:active { transform: scale(.97); }
 
 /* Chapters: the screen holds while the copy below it is read, then the camera walks to the next reel. */
 .chapter { min-height: 130svh; }
-.chapter .stage { position: sticky; top: 0; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; align-items: center; justify-items: center; row-gap: 2.5svh; padding: calc(var(--nav) + 1svh) var(--gutter) 3svh; }
-.chapter-copy { width: 100%; max-width: 1480px; display: grid; grid-template-columns: 1fr 1.25fr .9fr; gap: 40px; align-items: start; }
-.chapter-title h3 { font-family: var(--font-display), sans-serif; font-weight: 600; text-transform: uppercase; font-size: clamp(44px, 4.6vw, 72px); line-height: .9; letter-spacing: -.02em; }
+.chapter .stage { position: sticky; top: 0; min-height: 100svh; display: grid; grid-template-columns: minmax(240px, 1fr) auto; grid-template-rows: 1fr; align-items: center; column-gap: clamp(32px, 3.5vw, 64px); padding: calc(var(--nav) + 1svh) 4vw 3svh; }
+.chapter-copy { grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 1fr; gap: 22px; align-content: center; }
+.chapter-title h3 { font-family: var(--font-display), sans-serif; font-weight: 600; text-transform: uppercase; font-size: clamp(40px, 3.6vw, 60px); line-height: .9; letter-spacing: -.02em; }
 .chapter-category { font-size: 15px; letter-spacing: -.02em; line-height: 1.4; margin-top: 12px; max-width: 260px; color: var(--muted); }
 .chapter-tags { font-size: 11px; color: var(--muted); margin-top: 16px; }
 .chapter-body > p { font-size: 14px; color: var(--muted); max-width: 46ch; }
@@ -119,11 +119,11 @@ summary::-webkit-details-marker { display: none; }
 .project-details[open] .icon { transform: rotate(45deg); }
 .project-details p { font-size: 12px; color: var(--muted); max-width: 46ch; margin-top: 15px; }
 .case-footnote { display: block; font-size: 11px; color: var(--muted); margin-top: 18px; }
-.chapter-controls { display: grid; justify-items: end; gap: 12px; }
+.chapter-controls { display: grid; justify-items: start; gap: 12px; }
 .shots-caption { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .shots-caption b { font-weight: 500; color: var(--ink); }
 .shots-caption > span { color: var(--ink); margin-left: 10px; }
-.shots-dots { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
+.shots-dots { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-start; }
 .shots-dots button { width: 32px; height: 44px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; }
 .shots-dots button::before { content: ""; display: block; width: 14px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.22); transform-origin: left center; transition: transform 300ms var(--ease-out), background 200ms; }
 .shots-dots button[aria-pressed=true]::before { transform: scaleX(1.86); background: var(--accent); }
@@ -205,14 +205,16 @@ summary::-webkit-details-marker { display: none; }
 }
 @media (min-width:1600px) { :root { --gutter: 60px; } }
 @media (max-width:1024px) {
-  .chapter-copy { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .chapter .stage { grid-template-columns: 1fr; grid-template-rows: 1fr auto; justify-items: center; row-gap: 2.5svh; padding-inline: var(--gutter); }
+  .chapter .slot { grid-column: 1; grid-row: 1; width: min(calc(62vw + var(--step) * 0.4vw), calc(1.6 * (100svh - 390px))); }
+  .chapter-copy { grid-column: 1; grid-row: 2; width: 100%; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
   .chapter-controls { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; align-items: center; width: 100%; }
   .chapter-title h3 { font-size: 48px; }
   .private-disclosure summary { font-size: 18px; }
 }
 @media (max-width:767px) {
   :root { --nav: 64px; --gutter: 22px; --slot-hero: 92vw; --slot-title: 96vw; --slot-project: 92vw; --slot-contact: 86vw; }
-  .chapter .slot { width: 92vw; margin-left: 0; }
+  .chapter .slot { width: 92vw; }
   .navigation { gap: 15px; }
   .brand { font-size: 24px; gap: 10px; }
   .brand-symbol i { width: 4px; height: 19px; }
