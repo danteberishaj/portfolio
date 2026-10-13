@@ -1,5 +1,6 @@
 "use client";
 import { useSyncExternalStore } from "react";
+import { projects } from "../projects";
 
 export type SceneId = "hero" | "work-title" | `p${number}` | "about" | "contact";
 export type TheaterState = { active: SceneId; slides: number[]; paused: boolean; ready: boolean };
@@ -26,7 +27,7 @@ export function createTheaterStore(projectCount: number) {
 }
 export type TheaterStore = ReturnType<typeof createTheaterStore>;
 
-export const theater = createTheaterStore(11);
+export const theater = createTheaterStore(projects.length);
 
 export function useTheater<T>(select: (state: TheaterState) => T): T {
   return useSyncExternalStore(theater.subscribe, () => select(theater.get()), () => select(theater.get()));

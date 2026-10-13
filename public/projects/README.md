@@ -14,6 +14,11 @@ Current files:
 - `offday-1.jpg` … `offday-14.jpg`: Offday (in development, captured from a local build at localhost:3210, no public
   link): landing hero, problem, how it works, features, security, pricing, then the app's team calendar, request
   modal, requests, shifts, employees, assistant, profile, and light theme.
+- `appcare-1.jpg` … `appcare-10.jpg`: AppCare (in development, captured on 2026-10-13 from a local build at
+  localhost:3100, no public link): landing hero, evidence, the sample scan, the seven checks, a fix prompt, the
+  read-only promise, pricing, then the dashboard with a local test account (made-up name, sample app address taken from
+  the product's own placeholder), and the connection steps after payment. No scan was run against any real site;
+  development-only shortcut buttons and the Next.js dev badge were hidden before capture.
 
 Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
 `object-fit: cover` anchored to the top edge.
