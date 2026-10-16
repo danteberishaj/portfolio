@@ -8,7 +8,7 @@
   --accent: #d2e8ab; --accent-ink: #172112; --lamp: #e9f3d6;
   --ease-out: cubic-bezier(.23,1,.32,1); --ease-in-out: cubic-bezier(.77,0,.175,1);
   --nav: 72px; --gutter: 6vw; --radius: 14px;
-  --slot-hero: min(58vw, 124svh); --slot-title: min(78vw, 131svh); --slot-project: min(58vw, 83svh); --slot-contact: min(50vw, 72svh); --step: 0;
+  --slot-hero: min(58vw, 124svh); --slot-title: min(78vw, 131svh); --slot-project: min(58vw, 83svh); --slot-contact: min(50vw, 72svh); --step: 0; --chapter: 84svh;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -66,7 +66,7 @@ button:active { transform: scale(.97); }
 .screen-stage > * { grid-area: 1 / 1; }
 .slot { position: relative; aspect-ratio: 16 / 10; width: var(--slot-project); }
 /* Each reel parks the camera a step closer than the last, so the walk down the aisle is visible. */
-.chapter .slot { grid-column: 2; grid-row: 1; width: min(calc(58vw + var(--step) * 0.8vw), calc(1.6 * (100svh - 170px))); }
+.chapter .slot { grid-column: 2; grid-row: 1; width: min(calc(58vw + var(--step) * 0.8vw), calc(1.6 * (var(--chapter) - 170px))); }
 .hero .slot { width: var(--slot-hero); }
 .intertitle .slot, .approach .slot { width: var(--slot-title); }
 .closing .slot { width: var(--slot-contact); }
@@ -95,7 +95,7 @@ button:active { transform: scale(.97); }
 .cta-circle .icon { width: 20px; height: 20px; }
 
 /* Intertitles and text scenes: the title card plays on a near-full screen. */
-.intertitle { min-height: 100svh; display: grid; align-items: center; padding: var(--nav) var(--gutter) 0; }
+.intertitle { min-height: var(--chapter); display: grid; align-items: center; padding: var(--nav) var(--gutter) 0; }
 .intertitle .projected, .approach .projected { width: var(--slot-title); }
 .intertitle h2, .approach h2 { font-size: clamp(44px, 7vw, 132px); }
 .approach { padding-top: var(--nav); }
@@ -103,8 +103,8 @@ button:active { transform: scale(.97); }
 .approach-body { padding-top: 4svh; padding-bottom: 16svh; }
 
 /* Chapters: the screen holds while the copy below it is read, then the camera walks to the next reel. */
-.chapter { min-height: 100svh; }
-.chapter .stage { position: relative; min-height: 100svh; display: grid; grid-template-columns: minmax(240px, 1fr) auto; grid-template-rows: 1fr; align-items: center; column-gap: clamp(32px, 3.5vw, 64px); padding: calc(var(--nav) + 1svh) 4vw calc(var(--nav) + 1svh); }
+.chapter { min-height: var(--chapter); }
+.chapter .stage { position: relative; min-height: var(--chapter); display: grid; grid-template-columns: minmax(240px, 1fr) auto; grid-template-rows: 1fr; align-items: center; column-gap: clamp(32px, 3.5vw, 64px); padding: calc(var(--nav) + 1svh) 4vw calc(var(--nav) + 1svh); }
 .chapter-copy { grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 1fr; gap: 22px; align-content: center; }
 .chapter-title h3 { font-family: var(--font-display), sans-serif; font-weight: 600; text-transform: uppercase; font-size: clamp(40px, 3.6vw, 60px); line-height: .9; letter-spacing: -.02em; }
 .chapter-category { font-size: 15px; letter-spacing: -.02em; line-height: 1.4; margin-top: 12px; max-width: 260px; color: var(--muted); }
@@ -197,7 +197,7 @@ summary::-webkit-details-marker { display: none; }
 @media (min-width:1600px) { :root { --gutter: 60px; } }
 @media (max-width:1024px) {
   .chapter .stage { grid-template-columns: 1fr; grid-template-rows: 1fr auto; justify-items: center; row-gap: 2.5svh; padding-inline: var(--gutter); }
-  .chapter .slot { grid-column: 1; grid-row: 1; width: min(calc(62vw + var(--step) * 0.4vw), calc(1.6 * (100svh - 390px))); }
+  .chapter .slot { grid-column: 1; grid-row: 1; width: min(calc(62vw + var(--step) * 0.4vw), calc(1.6 * (var(--chapter) - 390px))); }
   .chapter-copy { grid-column: 1; grid-row: 2; width: 100%; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
   .chapter-controls { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; align-items: center; width: 100%; }
   .chapter-title h3 { font-size: 48px; }

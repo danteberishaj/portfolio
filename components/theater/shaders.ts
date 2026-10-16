@@ -34,7 +34,7 @@ void main() {
   colour *= uBrightness;
   if (uSweep >= 0.0) {
     float bar = exp(-pow((vUv.x - uSweep) * 9.0, 2.0));
-    colour += uLamp * bar * 0.45;
+    colour += uLamp * bar * 0.3;
   }
   gl_FragColor = vec4(colour, 1.0);
   #include <tonemapping_fragment>
