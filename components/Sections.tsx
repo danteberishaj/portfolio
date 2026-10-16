@@ -7,7 +7,7 @@ const capabilities = [
   { title: "Motion & 3D", copy: "From a satisfying interaction to a world you can move through.", stack: ["Three.js", "WebGL", "Framer Motion", "GSAP"] },
   { title: "Systems", copy: "Considered foundations that keep design and engineering in sync.", stack: ["Design systems", "Node.js", "Figma"] },
 ];
-const EMAIL = "hello@example.com";
+const EMAIL = "ddante.berishaj1@gmail.com";
 
 export function Approach() {
   return <section id="about" className="approach" data-scene="about">

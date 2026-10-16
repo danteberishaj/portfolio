@@ -15,15 +15,22 @@ Run `npm run build` followed by `npm start` for a production preview.
 ## How it works
 
 - The DOM is the script. Every scene renders a 16:10 slot (`[data-slot]`);
-  every frame the camera rig reads the slot rectangles, blends them by how
-  close they sit to the viewport's focus, and solves a straight-ahead camera
-  (distance, lateral dolly, vertical lens shift) that lands the 3D screen
-  exactly on the blended slot. Sticky slots park the camera; native scroll
-  drives every move. There is no scroll-jacking.
+  every frame the camera rig reads the slot rectangles, finds the two either
+  side of the focus line (half way down the viewport), and solves a
+  straight-ahead camera (distance, lateral dolly, vertical lens shift) that
+  lands the 3D screen on the result. In the two-column layout the screen
+  holds its place on the focus line while the page scrolls past it, tweening
+  only its size, eye height and house lights between scenes; in stacked
+  layouts it tracks the active slot and a scene change is a cut made in the
+  reel's blackout. Nothing parks, and native scroll drives every move. There
+  is no scroll-jacking.
 - Project chapters show the real screenshots as textures on the screen; the
   room's light takes each slide's average colour. Previous/next and dots are
-  real buttons. A project change is a reel change (fade, light sweep, fade
-  in); a slide change is a short cut.
+  real buttons. A project change is a reel change (fade out, a hold in the
+  black, fade in under a light bar); a slide change is a short crossfade.
+  The reel is interruptible, so a long scroll is one blackout rather than a
+  reel per chapter. Slides decode off the main thread and are uploaded to
+  the GPU as soon as they land.
 - A still version carries the same content without WebGL: it is used for
   `prefers-reduced-motion`, missing WebGL, a lost context, or `/?still`, and
   is linked from the footer.
@@ -32,8 +39,9 @@ Run `npm run build` followed by `npm start` for a production preview.
 
 ## Personalize before publishing
 
-The site belongs to Dante Berishaj. The email and experience counts are retained as supplied. Replace or verify these before using the
-page publicly.
+The site belongs to Dante Berishaj and the contact address is
+ddante.berishaj1@gmail.com. The experience counts are retained as supplied;
+verify them before using the page publicly.
 
 - Name and metadata: `app/layout.tsx`.
 - Contact address: `components/Sections.tsx` (`EMAIL`).

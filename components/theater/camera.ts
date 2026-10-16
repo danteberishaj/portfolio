@@ -2,6 +2,8 @@
 export const SCREEN = { width: 16, height: 10, bottom: 1 } as const;
 export const FOV = 42;
 export const EYE = 1.6;
+/** The focus line: where the screen holds on the viewport, as a fraction of its height from the top. */
+export const FOCUS = 0.5;
 
 /** Portrait viewports need a wider lens and a deeper room, or the camera ends up behind the projector. */
 export function roomLayout(portrait: boolean) {
@@ -10,21 +12,62 @@ export function roomLayout(portrait: boolean) {
 
 export type Rect = { left: number; top: number; width: number; height: number };
 export type Slot = { id: string; rect: Rect; eye: number; house: number };
-export type Target = { rect: Rect; eye: number; house: number; active: string | null; presence: number; presences: { id: string; presence: number }[] };
+export type Presence = { id: string; presence: number };
+export type Target = { rect: Rect; eye: number; house: number; presences: Presence[] };
+export type Pair = { a: Slot; b: Slot; t: number };
 export type CameraPose = { x: number; y: number; z: number; shiftY: number };
 export type Viewport = { width: number; height: number };
 
 const tanHalf = (fov: number) => Math.tan(((fov / 2) * Math.PI) / 180);
+const centreOf = (slot: Slot) => slot.rect.top + slot.rect.height / 2;
 
-/** 1 when a slot's centre sits on the focus line (45% down the viewport), easing to 0 at 70% of the viewport height away. */
-export function presence(centreY: number, viewportHeight: number): number {
-  const u = Math.min(1, Math.abs(centreY - viewportHeight * 0.45) / (viewportHeight * 0.7));
-  return 1 - u * u * (3 - 2 * u);
+/**
+ * The two slots either side of the focus line and how far the line sits between their centres: 0 at `a`, 1 at `b`.
+ * Before the first slot or after the last, both are that slot and the camera simply tracks it.
+ * `t` only grows as the page scrolls down, so nothing derived from it can move against the scroll.
+ */
+export function focusPair(slots: Slot[], viewportHeight: number, focus = FOCUS): Pair | null {
+  if (!slots.length) return null;
+  const sorted = [...slots].sort((p, q) => centreOf(p) - centreOf(q));
+  const line = viewportHeight * focus;
+  if (line <= centreOf(sorted[0])) return { a: sorted[0], b: sorted[0], t: 0 };
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const a = sorted[i], b = sorted[i + 1];
+    const ca = centreOf(a), cb = centreOf(b);
+    if (line < cb) { const span = cb - ca; return { a, b, t: span > 0 ? (line - ca) / span : 1 }; }
+  }
+  const last = sorted[sorted.length - 1];
+  return { a: last, b: last, t: 0 };
 }
 
-/** Presence-weighted blend of every slot near the focus; holds the fallback when none is near. */
+/** How much of the screen each slot of the pair owns; they sum to 1. */
+export function presencesOf({ a, b, t }: Pair): Presence[] {
+  if (a.id === b.id) return [{ id: a.id, presence: 1 }];
+  return [{ id: a.id, presence: 1 - t }, { id: b.id, presence: t }];
+}
+
+export function lerpRect(a: Rect, b: Rect, k: number): Rect {
+  return { left: a.left + (b.left - a.left) * k, top: a.top + (b.top - a.top) * k, width: a.width + (b.width - a.width) * k, height: a.height + (b.height - a.height) * k };
+}
+
+/**
+ * The pinned framing: a linear blend of the pair. Two slots that scroll together blend to a centre that sits
+ * exactly on the focus line, so the screen holds its place while the page moves past it and only its size,
+ * the eye height and the house lights tween from one scene to the next.
+ */
+export function pinnedTarget(pair: Pair): Target {
+  const { a, b, t } = pair;
+  return { rect: lerpRect(a.rect, b.rect, t), eye: a.eye + (b.eye - a.eye) * t, house: a.house + (b.house - a.house) * t, presences: presencesOf(pair) };
+}
+
+/** The tracked framing: the active slot's own rectangle, for layouts where the copy sits under the screen. */
+export function trackedTarget(pair: Pair, active: string | null): Target {
+  const slot = active === pair.b.id ? pair.b : pair.a;
+  return { rect: slot.rect, eye: slot.eye, house: slot.house, presences: presencesOf(pair) };
+}
+
 /** Which scene owns the screen. Title cards win ties and take over early; a project needs a clear majority, so a slide never plays under a title. */
-export function chooseActive(presences: { id: string; presence: number }[], current: string | null): string | null {
+export function chooseActive(presences: Presence[], current: string | null): string | null {
   if (!presences.length) return current;
   const isProject = (id: string) => /^p\d+$/.test(id);
   const sorted = [...presences].sort((a, b) => b.presence - a.presence);
@@ -37,28 +80,6 @@ export function chooseActive(presences: { id: string; presence: number }[], curr
   if (best.id === current) return current;
   // A project needs a clear majority over the incumbent.
   return best.presence - incumbentPresence > 0.25 ? best.id : current;
-}
-
-export function blendSlots(slots: Slot[], viewportHeight: number, fallback: Target): Target {
-  let total = 0, best = 0, active: string | null = null;
-  const presences: { id: string; presence: number }[] = [];
-  const rect = { left: 0, top: 0, width: 0, height: 0 };
-  let eye = 0, house = 0;
-  for (const slot of slots) {
-    const p = presence(slot.rect.top + slot.rect.height / 2, viewportHeight);
-    if (p <= 0) continue;
-    total += p;
-    rect.left += slot.rect.left * p; rect.top += slot.rect.top * p;
-    rect.width += slot.rect.width * p; rect.height += slot.rect.height * p;
-    eye += slot.eye * p; house += slot.house * p;
-    presences.push({ id: slot.id, presence: p });
-    if (p > best) { best = p; active = slot.id; }
-  }
-  if (total < 0.02) return { ...fallback, presence: 0, presences };
-  return {
-    rect: { left: rect.left / total, top: rect.top / total, width: rect.width / total, height: rect.height / total },
-    eye: eye / total, house: house / total, active, presence: total, presences,
-  };
 }
 
 /** A straight-ahead camera (looking down -z at the screen on z = 0) whose frame is shifted vertically so the screen lands on `rect`. */
@@ -86,9 +107,4 @@ export function projectScreen(pose: CameraPose, viewport: Viewport, fov = FOV): 
   const top = ((1 - ny(SCREEN.bottom + SCREEN.height)) / 2) * viewport.height;
   const bottom = ((1 - ny(SCREEN.bottom)) / 2) * viewport.height;
   return { left, top, width: right - left, height: bottom - top };
-}
-
-/** Linear interpolation between poses, for damping. */
-export function lerpPose(a: CameraPose, b: CameraPose, k: number): CameraPose {
-  return { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k, z: a.z + (b.z - a.z) * k, shiftY: a.shiftY + (b.shiftY - a.shiftY) * k };
 }

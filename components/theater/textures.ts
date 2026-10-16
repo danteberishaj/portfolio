@@ -27,15 +27,37 @@ export function textureSrc(src: string, narrow: boolean): string {
   return narrow ? `/_next/image?url=${encodeURIComponent(src)}&w=1080&q=80` : src;
 }
 
-const loader = new THREE.TextureLoader();
-export async function loadImageTexture(src: string): Promise<Loaded> {
-  const texture = await loader.loadAsync(src);
+function prepare(texture: THREE.Texture) {
   texture.colorSpace = THREE.NoColorSpace; // raw bytes; the screen shader decodes sRGB itself
   texture.anisotropy = 4;
   texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.generateMipmaps = true;
   texture.needsUpdate = true;
+}
+
+/** Decoding happens off the main thread where ImageBitmap exists, so a reel change never stalls the frame; plain images elsewhere. */
+const bitmapLoader = typeof createImageBitmap === "function"
+  ? new THREE.ImageBitmapLoader().setOptions({ imageOrientation: "flipY", premultiplyAlpha: "none", colorSpaceConversion: "none" })
+  : null;
+const imageLoader = new THREE.TextureLoader();
+
+export async function loadImageTexture(src: string): Promise<Loaded> {
+  if (bitmapLoader) {
+    const bitmap = await bitmapLoader.loadAsync(src);
+    const texture = new THREE.CanvasTexture(bitmap);
+    prepare(texture);
+    return { texture, colour: sampleAverage(bitmap) };
+  }
+  const texture = await imageLoader.loadAsync(src);
+  prepare(texture);
   return { texture, colour: sampleAverage(texture.image as CanvasImageSource) };
+}
+
+/** Frees the GPU texture and the decoded bitmap behind it. */
+export function releaseTexture(loaded: Loaded) {
+  loaded.texture.dispose();
+  const image = loaded.texture.image as { close?: () => void } | undefined;
+  if (image && typeof image.close === "function") image.close();
 }
 
 /** A small least-recently-used cache so at most `max` slides stay on the GPU. */
@@ -49,7 +71,7 @@ export function createTextureCache(load: (src: string) => Promise<Loaded>, max =
       if (oldestKey === null) return;
       const entry = entries.get(oldestKey)!;
       entries.delete(oldestKey);
-      entry.promise.then((loaded) => loaded.texture.dispose()).catch(() => undefined);
+      entry.promise.then(releaseTexture).catch(() => undefined);
     }
   }
   return {
@@ -62,7 +84,7 @@ export function createTextureCache(load: (src: string) => Promise<Loaded>, max =
     },
     touch(src: string) { const entry = entries.get(src); if (entry) entry.last = ++tick; },
     get size() { return entries.size; },
-    dispose() { entries.forEach((entry) => entry.promise.then((loaded) => loaded.texture.dispose()).catch(() => undefined)); entries.clear(); },
+    dispose() { entries.forEach((entry) => entry.promise.then(releaseTexture).catch(() => undefined)); entries.clear(); },
   };
 }
 export type TextureCache = ReturnType<typeof createTextureCache>;

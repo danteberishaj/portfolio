@@ -31,11 +31,11 @@ void main() {
   vec3 colour = mix(lamp, image, hasImage);
   colour *= 1.0 - 0.18 * smoothstep(0.45, 0.85, d) * hasImage;
   colour *= 1.0 + uFlicker * (hash(floor(uTime * 24.0)) - 0.5) * 0.06;
+  colour *= uBrightness;
   if (uSweep >= 0.0) {
     float bar = exp(-pow((vUv.x - uSweep) * 9.0, 2.0));
-    colour += uLamp * bar * 0.9;
+    colour += uLamp * bar * 0.45;
   }
-  colour *= uBrightness;
   gl_FragColor = vec4(colour, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>

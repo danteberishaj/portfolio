@@ -118,7 +118,7 @@ The world replaces the earlier "Live Generative Performance" (a procedural line 
 - One screen, one beam, one green-black room; the slides are the only full-colour material.
 - Condensed uppercase title cards for every display moment; Archivo for everything read or operated.
 - Celadon used as light: accent words, the pressed state, the house lights, the closing card.
-- Native scroll, sticky stages that park the camera, and a still version that keeps every token.
+- Native scroll, a screen that holds the focus line while the page moves past it, and a still version that keeps every token.
 
 ## Colors
 
@@ -171,9 +171,9 @@ The document is the script and its slots are the camera path. Every scene render
 
 - Hero: `min(58vw, 124svh)`, centred, the title projected inside it; one line of description and the "See the work" action sit bottom-left.
 - Work intertitle and approach: `min(78vw, 131svh)`, so the screen edges and the first seat row stay in frame.
-- Project chapters (desktop, over 1024px): the copy column (`minmax(240px, 1fr)`) beside the screen, which grows from 58vw by 0.8vw per chapter, capped at `1.6 * (100svh - 170px)` so the walk down the aisle is visible on 900px and 768px tall viewports. Each chapter is 130svh tall with a sticky 100svh stage padded `nav + 1svh` on top and 4vw at the sides; the stage parks the camera for 30svh while the copy is read.
+- Project chapters (desktop, over 1024px): the copy column (`minmax(240px, 1fr)`) beside the screen, which grows from 58vw by 0.8vw per chapter, capped at `1.6 * (100svh - 170px)` so the walk down the aisle is visible on 900px and 768px tall viewports. Each chapter is one viewport (100svh) with its stage padded `nav + 1svh` top and bottom and 4vw at the sides, so the slot and the copy centre on the focus line; nothing parks, the screen holds still and the copy scrolls past it.
 - Project chapters (768 to 1024px): stacked, slot `min(62vw + 0.4vw per chapter, 1.6 * (100svh - 390px))`, copy in two columns below.
-- Project chapters (under 768px): stacked and not sticky, slot 92vw, copy in one column.
+- Project chapters (under 768px): stacked in flow, slot 92vw, copy in one column; the screen tracks the slot and a chapter change is a cut in the black.
 - Contact: `min(50vw, 72svh)` with the eye raised to 4m and the house lights up, so the camera cranes back over the seats.
 
 Containers: content caps at 1480px with a 6vw gutter (60px over 1600px, 22px under 768px). Navigation is fixed at 72px (64px mobile). Section bodies breathe with svh units (the approach body 4svh above and 16svh below). Breakpoints: 1600, 1024, 767, 370.
@@ -205,7 +205,7 @@ The 16:10 rectangle is the only large shape; it is the screen in every scene and
 - **Capabilities:** `headline` summaries between 1px lines, celadon when open; the body is a two-column grid of a 16px paragraph and outlined tags (`capability-tag`).
 
 ### Title cards (projected text)
-- **Style:** centred inside the slot, uppercase display face, the first line ink and the accent inline in celadon, a 46px lamp glow behind; in the theater they flicker on a 5.3s stepped cycle and fade in with the camera (opacity follows the slot's presence), and they ride the screen's pointer parallax through `--px` / `--py`.
+- **Style:** centred inside the slot, uppercase display face, the first line ink and the accent inline in celadon, a 46px lamp glow behind; in the theater they flicker on a 5.3s stepped cycle (on the children, so it never overrides the fade), show for the active scene only with a 260ms fade either way, and ride wherever the screen is, parallax included, through an inline transform the camera rig writes.
 - **Hero:** two block lines with a 900ms clip-path reveal (70ms delay on the second line) that ends fully open so the glow is never clipped.
 
 ### Actions
@@ -217,7 +217,7 @@ The 16:10 rectangle is the only large shape; it is the screen in every scene and
 The still version mounts no canvas. Each project slot becomes a surface-coloured 14px frame with the real images filling it (350ms crossfade, instant under reduced motion); hero and intertitle slots show a radial lamp from #262b25 to surface. Everything else is identical.
 
 ### Motion grammar
-Press feedback scales to .97 over 160ms; colours and fills transition over 200ms; hover transforms over 300ms; all hover rules sit behind `(hover: hover) and (pointer: fine)`. The shared curves are `--ease-out` cubic-bezier(.23, 1, .32, 1) and `--ease-in-out` cubic-bezier(.77, 0, .175, 1). In the room: a reel change fades out over 180ms, sweeps for 300ms and fades in over 400ms; a slide cut crossfades over 250ms with an 18% dip; the curtain lifts over 900ms once the first frame renders; pointer parallax and sway are damped, and the Pause control freezes drift, flicker and dust while the camera keeps following scroll. Reduced motion, missing WebGL, a lost context or `/?still` switch to the still version.
+Press feedback scales to .97 over 160ms; colours and fills transition over 200ms; hover transforms over 300ms; all hover rules sit behind `(hover: hover) and (pointer: fine)`. The shared curves are `--ease-out` cubic-bezier(.23, 1, .32, 1) and `--ease-in-out` cubic-bezier(.77, 0, .175, 1). In the room: a reel change fades out over 160ms, holds 120ms in the black (where stacked layouts make their camera cut) and fades in over 400ms under a 280ms light bar, and it is interruptible, so a long scroll is one blackout; a slide cut crossfades over 250ms with an 18% dip; the curtain lifts over 900ms once the first frame renders; pointer parallax and sway are damped, and the Pause control freezes drift, flicker and dust while the camera keeps following scroll. Reduced motion, missing WebGL, a lost context or `/?still` switch to the still version.
 
 ## Do's and Don'ts
 
