@@ -14,16 +14,19 @@ Current files:
 - `offday-1.jpg` … `offday-14.jpg`: Offday (in development, captured from a local build at localhost:3210, no public
   link): landing hero, problem, how it works, features, security, pricing, then the app's team calendar, request
   modal, requests, shifts, employees, assistant, profile, and light theme.
-- `appcare-1.jpg` … `appcare-10.jpg`: AppCare (in development, captured on 2026-10-13 from a local build at
-  localhost:3100, no public link): landing hero, evidence, the sample scan, the seven checks, a fix prompt, the
-  read-only promise, pricing, then the dashboard with a local test account (made-up name, sample app address taken from
-  the product's own placeholder), and the connection steps after payment. No scan was run against any real site;
-  development-only shortcut buttons and the Next.js dev badge were hidden before capture.
+- `leakscan-1.jpg` … `leakscan-10.jpg`: LeakScan (https://www.leakscan.dev/, formerly AppCare), captured on
+  2026-10-26 at 1600×1000 from the live public site in headless Chrome: landing hero, evidence, what we found in 9 real
+  apps, the sample scan, the seven checks, inside the report, a fix prompt, the seven steps, the read-only promise, and
+  pricing. The thin teal line at the top of most frames is the site's own scroll progress bar. The earlier AppCare
+  dashboard slides were dropped because they carried the old name and the dashboard sits behind sign-in.
 
 Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
 `object-fit: cover` anchored to the top edge.
 - `geoapp-1.jpg` … `geoapp-3.jpg`: Geo Guesser World 3D! (Google Play, com.snaxxtech.geoguesser). Composed at
   1600×1000 from the store listing's icon and screenshots: icon with start screen, three phone shots, two tablet shots.
+- `arrows-1.jpg` … `arrows-3.jpg`: Arrows (Google Play, com.danteb.arrows). Composed on 2026-10-26 at 1600×1000 in
+  headless Chrome from the store listing's icon and screenshots: icon with a light level on a 7-inch tablet, the four
+  phone listing images as published, and two 10-inch tablet shots (light start screen, dark level).
 - `canna-1.jpg` … `canna-5.jpg`: GoodCannaNow patient booking (https://app.goodcannanow.com/goodcannanow/),
   captured at 1600×1000 with the form empty: welcome, personal information, address, medical intake, review and consent.
 - `chrx-1.jpg` … `chrx-6.jpg`: CannaHealRx booking (https://app.cannahealrx.com/cannahealrx/book/), captured at
