@@ -19,6 +19,14 @@ Current files:
   apps, the sample scan, the seven checks, inside the report, a fix prompt, the seven steps, the read-only promise, and
   pricing. The thin teal line at the top of most frames is the site's own scroll progress bar. The earlier AppCare
   dashboard slides were dropped because they carried the old name and the dashboard sits behind sign-in.
+- `kiwiimenu-1.jpg` … `kiwiimenu-11.jpg`: KiwiiMenu (in development, the SnaxxTech/QR-Lab repository, no public link),
+  captured on 2026-10-27 at 1600×1000 in headless Chrome from a local dev build with a throwaway database and email
+  sending off: landing hero, ordering and reservations, spa and hotel examples, then a test workspace built on
+  "Café Mirela", the product's own example template: the template picker, menu editor, Menu Designer with a dish
+  selected, the Night bar look, orders board, reservations, and the QR code designer. Slide 8 is a board composed for
+  this page from three 390×844 captures of the menu preview; the owner's preview bar is left in because hosted guest
+  menus are not built yet. Orders and bookings are sample data entered for the capture, with made-up guest names and
+  555 phone numbers.
 
 Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
 `object-fit: cover` anchored to the top edge.
