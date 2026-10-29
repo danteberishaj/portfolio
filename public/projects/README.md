@@ -27,6 +27,13 @@ Current files:
   this page from three 390×844 captures of the menu preview; the owner's preview bar is left in because hosted guest
   menus are not built yet. Orders and bookings are sample data entered for the capture, with made-up guest names and
   555 phone numbers.
+- `glassds-1.jpg` … `glassds-11.jpg`: glass-ds (unreleased, the danteberishaj/glass-ds repository, no public link),
+  captured on 2026-10-29 at 1600×1000 in headless Chrome with the dark colour scheme emulated: nine from the showcase
+  site (`npm run site`): the hero, the fallback simulator on its Glass and Forced colors tabs, the Forms, Data, and
+  Feedback tabs of the component showcase, the Delete project dialog open over the page, the theming section, and the
+  springs section; then two from Storybook (`npm run storybook`, theme global set to dark): the AppShell Dashboard
+  story and the DatePicker Pick a date story with its calendar open. Names and figures in the demos are the site's
+  own sample data.
 
 Recommended aspect ratio: **16:10** (e.g. 1600×1000). The gallery crops with
 `object-fit: cover` anchored to the top edge.
