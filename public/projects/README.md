@@ -19,14 +19,17 @@ Current files:
   apps, the sample scan, the seven checks, inside the report, a fix prompt, the seven steps, the read-only promise, and
   pricing. The thin teal line at the top of most frames is the site's own scroll progress bar. The earlier AppCare
   dashboard slides were dropped because they carried the old name and the dashboard sits behind sign-in.
-- `kiwiimenu-1.jpg` … `kiwiimenu-11.jpg`: KiwiiMenu (live at https://kiwiimenu.app/, the SnaxxTech/QR-Lab repository),
-  captured on 2026-10-27 at 1600×1000 in headless Chrome from a local dev build with a throwaway database and email
-  sending off: landing hero, ordering and reservations, spa and hotel examples, then a test workspace built on
-  "Café Mirela", the product's own example template: the template picker, menu editor, Menu Designer with a dish
-  selected, the Night bar look, orders board, reservations, and the QR code designer. Slide 8 is a board composed for
-  this page from three 390×844 captures of the menu preview; the owner's preview bar is left in because hosted guest
-  menus were not built when these were captured. Orders and bookings are sample data entered for the capture, with made-up guest names and
-  555 phone numbers.
+- `kiwiimenu-1.jpg` … `kiwiimenu-12.jpg`: KiwiiMenu (live at https://kiwiimenu.app/, the SnaxxTech/QR-Lab repository),
+  recaptured on 2026-11-26 after the redesign, at 1600×1000 in headless Chrome from a local dev build with a throwaway
+  database and email sending off: the landing hero, the Menu designer and Table ordering tabs of "One menu, three
+  jobs", the spa and hotel examples, then a test workspace built on "Café Mirela", the product's own example template:
+  the template picker, menu editor, Menu designer with a dish selected, the Night bar look, orders board,
+  reservations, and the printable table cards. Slide 8 onwards use a published menu with the Night bar look; slides
+  6 and 7 use a second draft that keeps the template's own look. Slide 9 is a board composed for this page from three
+  390×844 captures of the hosted guest menu (`/m/cafe-mirela`, the first two with a table code). Orders and bookings
+  are sample data entered through the guest menu for the capture, with made-up guest names and 555 phone numbers.
+  The QR code designer slide was dropped: new dynamic QR codes are no longer part of any plan. The codes on the
+  table cards point at the local build.
 - `glassds-1.jpg` … `glassds-11.jpg`: glass-ds (unreleased, the danteberishaj/glass-ds repository, no public link),
   captured on 2026-10-29 at 1600×1000 in headless Chrome with the dark colour scheme emulated: nine from the showcase
   site (`npm run site`): the hero, the fallback simulator on its Glass and More contrast tabs, the Forms, Data, and
